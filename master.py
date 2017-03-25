@@ -6,6 +6,7 @@ Created on Mon Mar 20 09:50:19 2017
 """
 import sys
 from wit1 import Wit
+print('i fucking imported from wit1 idiots')
 
 
 #print(sys.argv)
