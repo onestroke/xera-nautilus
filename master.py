@@ -65,8 +65,9 @@ def wit_msg(sender_id,message_text):
         #if r.status_code != 200:
             #log(r.status_code)
             #log(r.text)
-    
-    #def getJoke(request):
+        return None
+        
+    def getJoke(request):
     #    context = request['context']
     #    entities = request['entities']
    # 
@@ -75,7 +76,7 @@ def wit_msg(sender_id,message_text):
    # 
    #     print('you are a joke haha')
    # 
-   #     return context
+        return context
         
     def getForecast(request):
         context = request['context']
