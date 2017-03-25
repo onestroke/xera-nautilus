@@ -20,60 +20,83 @@ def test1():
     print('test1 working')
     return None
 
-#def wit_msg(sender_id,message_text):
+def wit_msg(sender_id,message_text):
     
     
-def first_entity_value(entities, entity):
-    if entity not in entities:
-        return None
-    val = entities[entity][0]['value']
-    if not val:
-        return None
-    return val['value'] if isinstance(val, dict) else val
+    def first_entity_value(entities, entity):
+        if entity not in entities:
+            return None
+        val = entities[entity][0]['value']
+        if not val:
+            return None
+        return val['value'] if isinstance(val, dict) else val
+    
+    def send(request, response):
+        # We use the fb_id as equal to session_id
+        fb_id = request['session_id']
+        text = response['text']
+        # send message
+        print(text)
+        send_message(fb_id,text)
+        
+    def send_message(recipient_id, message_text):
 
-def send(request, response):
-    # We use the fb_id as equal to session_id
-    fb_id = request['session_id']
-    text = response['text']
-    # send message
-    print(text)
-    handle.send_message(fb_id, text)
-
-def getJoke(request):
-    context = request['context']
-    entities = request['entities']
-
-    print(context)
-    print(entities)
-
-    print('you are a joke haha')
-
-    return context
+        log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
     
-def getForecast(request):
-    context = request['context']
-    entities = request['entities']
+        params = {
+            "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+        }
+        headers = {
+            "Content-Type": "application/json"
+        }
+        data = json.dumps({
+            "recipient": {
+                "id": recipient_id
+            },
+            "message": {
+                "text": message_text
+            }
+        })
+        r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+        if r.status_code != 200:
+            log(r.status_code)
+            log(r.text)
     
-    print(context)
-    print(entities)
+    def getJoke(request):
+        context = request['context']
+        entities = request['entities']
     
-    print('It should be sunny today!')
+        print(context)
+        print(entities)
     
-    return context
+        print('you are a joke haha')
     
-
-actions = {
-    'send': send,
-    'getJoke': getJoke,
-    'getForecast': getForecast,
-}
-print(actions)
-#client = Wit(access_token=access_token, actions=actions)
-client=Wit(access_token=access_token)
-#client.access_token=access_token
-client.actions=actions
-#client.run_actions(session_id=sender_id, message=message_text)
-client.interactive()
+        return context
+        
+    def getForecast(request):
+        context = request['context']
+        entities = request['entities']
+        
+        print(context)
+        print(entities)
+        
+        print('It should be sunny today!')
+        
+        return context
+        
+    
+    actions = {
+        'send': send,
+        'getJoke': getJoke,
+        'getForecast': getForecast,
+    }
+    print(actions)
+    #client = Wit(access_token=access_token, actions=actions)
+    client=Wit(access_token=access_token)
+    #client.access_token=access_token
+    client.actions=actions
+    client.run_actions(session_id=sender_id, message=message_text)
+    #client.interactive()
     
 
     
