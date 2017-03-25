@@ -30,7 +30,7 @@ def wit_msg(sender_id,message_text):
     
     print('running wit msg')
     print('sender_id = '+ sender_id)
-    print('message_text = '+message_text)
+    print('message received = '+message_text)
     
     
     def send(request, response):
@@ -94,7 +94,7 @@ def wit_msg(sender_id,message_text):
         'getJoke': getJoke,
         'getForecast': getForecast,
     }
-    print(actions)
+    print('actions ='+actions)
     #client = Wit(access_token=access_token, actions=actions)
     client=Wit(access_token=access_token)
     #client.access_token=access_token
