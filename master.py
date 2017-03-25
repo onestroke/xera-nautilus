@@ -12,7 +12,7 @@ from flask import Flask, request
 
 import sys
 from wit1 import Wit
-print('i fucking imported from wit1 idiots')
+
 
 
 #print(sys.argv)
@@ -28,7 +28,9 @@ def test1():
 
 def wit_msg(sender_id,message_text):
     
-    
+    print('running wit msg')
+    print('sender_id = '+ sender_id)
+    print('message_text = '+message_text)
     
     
     def send(request, response):
@@ -36,10 +38,11 @@ def wit_msg(sender_id,message_text):
         fb_id = request['session_id']
         text = response['text']
         # send message
-        print(text)
+        print('sending to app.py: '+text)
         send_message(fb_id,text)
         
     def send_message(recipient_id, message_text):
+        print('sending to fb: '+message_text)
 
         #log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
     
@@ -78,10 +81,10 @@ def wit_msg(sender_id,message_text):
         entities = request['entities']
         
         context['forecast']="sunny"
-        print(context)
+        print('getForecast returns'+context)
         print(entities)
         
-        print('It should be sunny today!')
+        
         
         return context
         
