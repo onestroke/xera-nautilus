@@ -4,6 +4,12 @@ Created on Mon Mar 20 09:50:19 2017
 
 @author: alexr
 """
+import os
+import json
+
+import requests
+from flask import Flask, request
+
 import sys
 from wit1 import Wit
 print('i fucking imported from wit1 idiots')
@@ -35,7 +41,7 @@ def wit_msg(sender_id,message_text):
         
     def send_message(recipient_id, message_text):
 
-        log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+        #log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
     
         params = {
             "access_token": os.environ["PAGE_ACCESS_TOKEN"]
