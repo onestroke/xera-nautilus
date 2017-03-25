@@ -66,16 +66,16 @@ def wit_msg(sender_id,message_text):
             #log(r.status_code)
             #log(r.text)
     
-    def getJoke(request):
-        context = request['context']
-        entities = request['entities']
-    
-        print(context)
-        print(entities)
-    
-        print('you are a joke haha')
-    
-        return context
+    #def getJoke(request):
+    #    context = request['context']
+    #    entities = request['entities']
+   # 
+   #     print(context)
+   #     print(entities)
+   # 
+   #     print('you are a joke haha')
+   # 
+   #     return context
         
     def getForecast(request):
         context = request['context']
