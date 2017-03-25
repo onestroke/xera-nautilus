@@ -81,7 +81,8 @@ def wit_msg(sender_id,message_text):
         entities = request['entities']
         
         context['forecast']="sunny"
-        print('getForecast returns'+context)
+        print('getForecast returns = ')
+        print(context)
         print(entities)
         
         
@@ -100,6 +101,7 @@ def wit_msg(sender_id,message_text):
     #client.access_token=access_token
     client.actions=actions
     client.run_actions(session_id=sender_id, message=message_text)
+    message_text=None
     #client.interactive()
     
 
