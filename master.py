@@ -5,7 +5,7 @@ Created on Mon Mar 20 09:50:19 2017
 @author: alexr
 """
 import sys
-from pywit.wit import Wit
+from pywit.wit.wit import Wit
 
 
 #print(sys.argv)
