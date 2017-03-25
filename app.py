@@ -7,16 +7,14 @@ from flask import Flask, request
 
 
 
-#from master import wit_msg, test1 
-#test1()
+from master import wit_msg, test1 
+test1()
 
 app = Flask(__name__)
 
 
 
-#def test():
-#    print('test works')
-#    return None
+
 
 @app.route('/', methods=['GET'])
 def verify():
