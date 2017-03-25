@@ -60,10 +60,11 @@ def wit_msg(sender_id,message_text):
                 "text": message_text
             }
         })
+        print('posting')
         r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
         if r.status_code != 200:
-            log(r.status_code)
-            log(r.text)
+            #log(r.status_code)
+            #log(r.text)
     
     def getJoke(request):
         context = request['context']

@@ -25,7 +25,7 @@ def verify():
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
 
-    return "Hello world, edit 6", 200
+    return "Hello world, edit 25/03/17 1503", 200
 
 
 @app.route('/', methods=['POST'])
@@ -34,6 +34,7 @@ def webhook():
     # endpoint for processing incoming messaging events
 
     data = request.get_json()
+    print('raw data: ')
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     if data["object"] == "page":
