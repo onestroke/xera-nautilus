@@ -49,8 +49,8 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
 
                     print('message received by app.py: '+message_text)
-                    print('echo?: ')
-                    print(messaging_event["message"]["is_echo"])
+                    #print('echo?: ')
+                    #print(messaging_event["message"]["is_echo"])
                     wit_msg(sender_id,message_text)
                     #send_message(sender_id, "ggwp")
 
