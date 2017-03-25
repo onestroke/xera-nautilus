@@ -23,13 +23,7 @@ def test1():
 def wit_msg(sender_id,message_text):
     
     
-    def first_entity_value(entities, entity):
-        if entity not in entities:
-            return None
-        val = entities[entity][0]['value']
-        if not val:
-            return None
-        return val['value'] if isinstance(val, dict) else val
+    
     
     def send(request, response):
         # We use the fb_id as equal to session_id
@@ -77,6 +71,7 @@ def wit_msg(sender_id,message_text):
         context = request['context']
         entities = request['entities']
         
+        context['forecast']="sunny"
         print(context)
         print(entities)
         
