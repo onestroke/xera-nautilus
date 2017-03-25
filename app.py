@@ -7,16 +7,16 @@ from flask import Flask, request
 
 
 
-from master import wit_msg, test1 
-test1()
+#from master import wit_msg, test1 
+#test1()
 
 app = Flask(__name__)
 
 
 
-def test():
-    print('test works')
-    return None
+#def test():
+#    print('test works')
+#    return None
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -50,7 +50,7 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
                     
                     #wit_msg(sender_id,message_text)
-                    #send_message(sender_id, "ggwp")
+                    send_message(sender_id, "ggwp")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
