@@ -20,58 +20,62 @@ def test1():
     print('test1 working')
     return None
 
-def wit_msg(sender_id,message_text):
+#def wit_msg(sender_id,message_text):
     
     
-    def first_entity_value(entities, entity):
-        if entity not in entities:
-            return None
-        val = entities[entity][0]['value']
-        if not val:
-            return None
-        return val['value'] if isinstance(val, dict) else val
+def first_entity_value(entities, entity):
+    if entity not in entities:
+        return None
+    val = entities[entity][0]['value']
+    if not val:
+        return None
+    return val['value'] if isinstance(val, dict) else val
+
+def send(request, response):
+    # We use the fb_id as equal to session_id
+    fb_id = request['session_id']
+    text = response['text']
+    # send message
+    print(text)
+    handle.send_message(fb_id, text)
+
+def getJoke(request):
+    context = request['context']
+    entities = request['entities']
+
+    print(context)
+    print(entities)
+
+    print('you are a joke haha')
+
+    return context
     
-    def send(request, response):
-        # We use the fb_id as equal to session_id
-        fb_id = request['session_id']
-        text = response['text']
-        # send message
-        handle.send_message(fb_id, text)
+def getForecast(request):
+    context = request['context']
+    entities = request['entities']
     
-    def getJoke(request):
-        context = request['context']
-        entities = request['entities']
+    print(context)
+    print(entities)
     
-        print(context)
-        print(entities)
+    print('It should be sunny today!')
     
-        print('you are a joke haha')
+    return context
     
-        return context
-        
-    def getForecast(request):
-        context = request['context']
-        entities = request['entities']
-        
-        print(context)
-        print(entities)
-        
-        print('It should be sunny today!')
-        
-        return context
-        
+
+actions = {
+    'send': send,
+    'getJoke': getJoke,
+    'getForecast': getForecast,
+}
+print(actions)
+#client = Wit(access_token=access_token, actions=actions)
+client=Wit(access_token=access_token)
+#client.access_token=access_token
+client.actions=actions
+#client.run_actions(session_id=sender_id, message=message_text)
+client.interactive()
     
-    actions = {
-        'send': send,
-        'getJoke': getJoke,
-        'getForecast': getForecast,
-    }
-    print(actions)
-    #client = Wit(access_token=access_token, actions=actions)
-    client=Wit(access_token=access_token)
-    #client.access_token=access_token
-    client.actions=actions
-    client.run_actions(session_id=sender_id, message=message_text)
+
     
 
 
