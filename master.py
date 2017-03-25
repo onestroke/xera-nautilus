@@ -95,7 +95,8 @@ def wit_msg(sender_id,message_text):
         'getJoke': getJoke,
         'getForecast': getForecast,
     }
-    print('actions ='+actions)
+    print('actions =')
+    print(actions)
     #client = Wit(access_token=access_token, actions=actions)
     client=Wit(access_token=access_token)
     #client.access_token=access_token
