@@ -6,8 +6,7 @@ Created on Mon Mar 20 09:50:19 2017
 """
 import sys
 from pywit.wit import Wit
-from app import test
-test()
+
 
 #print(sys.argv)
 #if len(sys.argv) != 2:
