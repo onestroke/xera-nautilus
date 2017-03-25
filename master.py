@@ -42,7 +42,7 @@ def wit_msg(sender_id,message_text):
         send_message(fb_id,text)
         
     def send_message(recipient_id, message_text):
-        print('sending to fb: '+message_text)
+        print('sending to fb: '+ message_text)
 
         #log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
     
