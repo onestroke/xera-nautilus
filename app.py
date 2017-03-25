@@ -8,6 +8,10 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
+def test():
+    print('test works')
+    return None
+
 @app.route('/', methods=['GET'])
 def verify():
     # when the endpoint is registered as a webhook, it must echo back
@@ -17,7 +21,7 @@ def verify():
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
 
-    return "Hello world, test1", 200
+    return "Hello world, edit 1", 200
 
 
 @app.route('/', methods=['POST'])
