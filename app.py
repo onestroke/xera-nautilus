@@ -13,7 +13,7 @@ test1()
 app = Flask(__name__)
 
 
-
+message_text=None
 
 
 @app.route('/', methods=['GET'])
@@ -25,7 +25,7 @@ def verify():
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
 
-    return "Hello world, edit 5", 200
+    return "Hello world, edit 6", 200
 
 
 @app.route('/', methods=['POST'])
