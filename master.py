@@ -94,9 +94,15 @@ def wit_msg(sender_id,message_text):
         context = request['context']
         entities = request['entities']
         
-        greet_list=['Hello there!',
+        greet_list=['Hello!',
                     'Xera is at your service.',
-                    'Yes?']
+                    'At your service.',
+                    'Yes?',
+                    'Greetings!',
+                    'I am listening...',
+                    'Listening.',
+                    'I read you',
+                    'Reading you loud and clear.',]
         shuffle(greet_list)
         context['greeting'] = greet_list[0]
 
