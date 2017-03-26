@@ -6,6 +6,7 @@ Created on Mon Mar 20 09:50:19 2017
 """
 import os
 import json
+from random import shuffle
 
 import requests
 from flask import Flask, request
@@ -87,8 +88,18 @@ def wit_msg(sender_id,message_text):
         print(context)
         print(entities)
         
+        return context
         
+    def getGreeting(request):
+        context = request['context']
+        entities = request['entities']
         
+        greet_list=['Hello there!',
+                    'Xera is at your service.',
+                    'Yes?']
+        shuffle(greet_list)
+        context['greeting']=greet_list[0]
+
         return context
         
     
