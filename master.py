@@ -97,7 +97,7 @@ def wit_msg(sender_id,message_text):
         greet_list=['Hello there!',
                     'Xera is at your service.',
                     'Yes?']
-        shuffle(greet_list)
+        random.shuffle(greet_list)
         context['greeting']=greet_list[0]
 
         return context
