@@ -107,6 +107,7 @@ def wit_msg(sender_id,message_text):
         'send': send,
         'getJoke': getJoke,
         'getForecast': getForecast,
+        'getGreeting':getGreeting,
     }
     print('actions =')
     print(actions)
