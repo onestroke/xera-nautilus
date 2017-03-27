@@ -34,12 +34,12 @@ def wit_msg(sender_id,message_text):
     print('message received = '+message_text)
     
     def first_entity_value(entities, entity):
-    if entity not in entities:
-        return None
-    val = entities[entity][0]['value']
-    if not val:
-        return None
-    return val['value'] if isinstance(val, dict) else val
+        if entity not in entities:
+            return None
+        val = entities[entity][0]['value']
+        if not val:
+            return None
+        return val['value'] if isinstance(val, dict) else val
     
     def send(request, response):
         # We use the fb_id as equal to session_id
