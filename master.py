@@ -102,6 +102,7 @@ def wit_msg(sender_id,message_text):
         return context
         
     def getGreeting(request):
+        print('running greeting')
         context = request['context']
         entities = request['entities']
         print('######################################################')
@@ -155,7 +156,7 @@ def wit_msg(sender_id,message_text):
         loc1 = first_entity_value(entities, 'siri')
         loc2 = first_entity_value(entities, 'alexa')
         loc3 = first_entity_value(entities, 'cortana')
-        loc4 = first_entity_value(entities, 'xera')
+        
         
         if loc1:
             context['siri'] = True
@@ -182,8 +183,8 @@ def wit_msg(sender_id,message_text):
                 del context['siri']
             elif context.get('xera') is not None:
                 del context['xera']
-        elif loc4:
-            context['xera'] = True
+        else:
+            context['xera'] = 'I am XERA.'
             if context.get('cortana') is not None:
                 del context['cortana']
             elif context.get('alexa') is not None:
