@@ -181,8 +181,9 @@ class Wit(object):
         # Each new call increments an index for the session.
         # We only care about the last call to run_actions.
         # All the previous ones are discarded (preemptive exit).
-        current_request = self._sessions[session_id] + 1 if session_id in self._sessions else 1
         self._sessions[session_id] = current_request
+        current_request = self._sessions[session_id] + 1 if session_id in self._sessions else 1
+        
 
         context = self.__run_actions(session_id, current_request, message,
                                      context, max_steps, verbose)

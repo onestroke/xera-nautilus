@@ -153,44 +153,7 @@ def wit_msg(sender_id,message_text):
         entities = request['entities']
 
 
-        loc1 = first_entity_value(entities, 'siri')
-        loc2 = first_entity_value(entities, 'alexa')
-        loc3 = first_entity_value(entities, 'cortana')
         
-        
-        if loc1:
-            context['siri'] = True
-            print('siri')
-            if context.get('alexa') is not None:
-                del context['alexa']
-            elif context.get('cortana') is not None:
-                del context['cortana']
-            elif context.get('xera') is not None:
-                del context['xera']
-        elif loc2:
-            context['alexa'] = True
-            if context.get('cortana') is not None:
-                del context['cortana']
-            elif context.get('xera') is not None:
-                del context['xera']
-            elif context.get('siri') is not None:
-                del context['siri']
-        elif loc3:
-            context['cortana'] = True
-            if context.get('alexa') is not None:
-                del context['alexa']
-            elif context.get('siri') is not None:
-                del context['siri']
-            elif context.get('xera') is not None:
-                del context['xera']
-        else:
-            context['xera'] = 'I am XERA.'
-            if context.get('cortana') is not None:
-                del context['cortana']
-            elif context.get('alexa') is not None:
-                del context['alexa']
-            elif context.get('siri') is not None:
-                del context['siri']
         
 
         return context
