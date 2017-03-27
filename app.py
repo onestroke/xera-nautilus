@@ -25,7 +25,7 @@ def verify():
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
 
-    return "Hello world, edit 27/03/17 0233", 200
+    return "Hello world, edit 27/03/17 1616", 200
 
 
 @app.route('/', methods=['POST'])
@@ -55,6 +55,8 @@ def webhook():
                     if sender_id != '265568127232416' and recipient_id == '265568127232416':
                         print('running wit_msg from app.py')
                         wit_msg(sender_id,message_text)
+                    else:
+                        print('not running wit_msg')
                     #send_message(sender_id, "ggwp")
 
                 if messaging_event.get("delivery"):  # delivery confirmation

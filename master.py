@@ -38,7 +38,7 @@ def wit_msg(sender_id,message_text):
         fb_id = request['session_id']
         text = response['text']
         # send message
-        print('sending to app.py: '+text)
+        print('sending to send_message: '+text)
         send_message(fb_id,text)
         
     def send_message(recipient_id, message_text):
