@@ -127,9 +127,17 @@ def wit_msg(sender_id,message_text):
         shuffle(greet_list1)
         
         loc1 = first_entity_value(entities, 'siri')
+        print('loc1=')
+        print(loc1)
         loc2 = first_entity_value(entities, 'alexa')
+        print('loc2=')
+        print(loc2)
         loc3 = first_entity_value(entities, 'cortana')
+        print('loc3=')
+        print(loc3)
         loc4 = first_entity_value(entities, 'xera')
+        print('loc4=')
+        print(loc4)
         
         if loc1 or loc2 or loc3:
             print('running other bot')
