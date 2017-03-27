@@ -68,10 +68,11 @@ def wit_msg(sender_id,message_text):
         return None
         
     def first_entity_value(entities, entity):
-        if entities['intent'][0]['value']==entity:
-            return True
-        else:
-            return None
+        if entities['intent'][0]['value']!=None:
+            if entities['intent'][0]['value']==entity:
+                return True
+            else:
+                return None
 
     def getJoke(request):
     #    context = request['context']
