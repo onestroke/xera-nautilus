@@ -32,15 +32,7 @@ def wit_msg(sender_id,message_text):
     print('running wit msg')
     print('sender_id = '+ sender_id)
     print('message received = '+message_text)
-    
-    def first_entity_value(entities, entity):
-        if entity not in entities:
-            return None
-        val = entities[entity][0]['value']
-        if not val:
-            return None
-        return val['value'] if isinstance(val, dict) else val
-    
+        
     def send(request, response):
         # We use the fb_id as equal to session_id
         fb_id = request['session_id']
@@ -75,6 +67,18 @@ def wit_msg(sender_id,message_text):
             #log(r.text)
         return None
         
+    def first_entity_value(entities, entity):
+        #if entity not in entities:
+        #    return None
+        #val = entities[entity][0]['value']
+        #if not val:
+        #    return None
+        #return val['value'] if isinstance(val, dict) else val
+        if entities['intent']['value']==entity:
+            return True
+        else:
+            return None
+
     def getJoke(request):
     #    context = request['context']
     #    entities = request['entities']
