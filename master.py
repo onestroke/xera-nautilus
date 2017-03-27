@@ -74,7 +74,7 @@ def wit_msg(sender_id,message_text):
         #if not val:
         #    return None
         #return val['value'] if isinstance(val, dict) else val
-        if entities['intent']['value']==entity:
+        if entities['intent'][0]['value']==entity:
             return True
         else:
             return None
