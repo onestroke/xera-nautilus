@@ -130,9 +130,19 @@ def wit_msg(sender_id,message_text):
         loc4 = first_entity_value(entities, 'xera')
        
         
-        if loc1 or loc2 or loc3:
+        if loc1:
             print('running otherbot')
-            context['otherbot'] = True
+            context['otherbot'] = 'Ask her for your troubles next time.'
+            if context.get('greeting') is not None:
+                del context['greeting']
+        if loc2:
+            print('running otherbot')
+            context['otherbot'] = 'Do I look like I am missing my right boob?'
+            if context.get('greeting') is not None:
+                del context['greeting']
+        if loc3:
+            print('running otherbot')
+            context['otherbot'] = 'You need treatment, John.'
             if context.get('greeting') is not None:
                 del context['greeting']
         elif loc4:
