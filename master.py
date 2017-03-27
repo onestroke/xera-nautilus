@@ -110,19 +110,24 @@ def wit_msg(sender_id,message_text):
         print(entities)
         print('######################################################')
         
-        greet_list=['Hello!',
-                    'At your service.',
-                    'Yes?',
-                    'Greetings!',
-                    'I am listening.',
-                    'Listening.',
-                    'I read you',
-                    'Reading you loud and clear.',]
+        greet_list=['Hello...',
+                    'Yes...',
+                    '...(Insert standard greeting)',
+                    'I can hear you...',
+                    'Listening...',
+                    'I hear you...',
+                    'Hmmph!',
+                    'I have a name you know...',]
         shuffle(greet_list)
         
-        greet_list1=['Xera hears you.',
+        greet_list1=['Xera hears you!',
                      'Xera is at your service.',
-                     'Xera is ready.',]
+                     'I am at your service.',
+                     'Yes?',
+                     'Xera is ready!',
+                     'I am ready!',
+                     'Xera sees you, and is happy to assist.',
+                     'It would be an honour to assist you.',]
         shuffle(greet_list1)
         
         loc1 = first_entity_value(entities, 'siri')
