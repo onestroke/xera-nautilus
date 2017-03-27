@@ -68,12 +68,6 @@ def wit_msg(sender_id,message_text):
         return None
         
     def first_entity_value(entities, entity):
-        #if entity not in entities:
-        #    return None
-        #val = entities[entity][0]['value']
-        #if not val:
-        #    return None
-        #return val['value'] if isinstance(val, dict) else val
         if entities['intent'][0]['value']==entity:
             return True
         else:
@@ -131,20 +125,13 @@ def wit_msg(sender_id,message_text):
         shuffle(greet_list1)
         
         loc1 = first_entity_value(entities, 'siri')
-        print('loc1=')
-        print(loc1)
         loc2 = first_entity_value(entities, 'alexa')
-        print('loc2=')
-        print(loc2)
         loc3 = first_entity_value(entities, 'cortana')
-        print('loc3=')
-        print(loc3)
         loc4 = first_entity_value(entities, 'xera')
-        print('loc4=')
-        print(loc4)
+       
         
         if loc1 or loc2 or loc3:
-            print('running other bot')
+            print('running otherbot')
             context['otherbot'] = True
             if context.get('greeting') is not None:
                 del context['greeting']
