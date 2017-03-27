@@ -147,6 +147,7 @@ def wit_msg(sender_id,message_text):
         return context
         
     def getID(requests):
+        print('running getID')
         context = request['context']
         entities = request['entities']
 
@@ -158,6 +159,7 @@ def wit_msg(sender_id,message_text):
         
         if loc1:
             context['siri'] = True
+            print('siri')
             if context.get('alexa') is not None:
                 del context['alexa']
             elif context.get('cortana') is not None:
