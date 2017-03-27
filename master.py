@@ -35,6 +35,8 @@ def wit_msg(sender_id,message_text):
         
     def send(request, response):
         # We use the fb_id as equal to session_id
+        print('reponse to be sent= ')
+        print(response)
         fb_id = request['session_id']
         text = response['text']
         # send message
@@ -68,11 +70,12 @@ def wit_msg(sender_id,message_text):
         return None
         
     def first_entity_value(entities, entity):
-        if entities['intent'][0]['value']!=None:
-            if entities['intent'][0]['value']==entity:
-                return True
-            else:
-                return None
+        if entities==None:
+            return None
+        elif entities['intent'][0]['value']==entity:
+            return True
+        else:
+            return None
 
     def getJoke(request):
     #    context = request['context']
