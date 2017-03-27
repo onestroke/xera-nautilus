@@ -33,6 +33,13 @@ def wit_msg(sender_id,message_text):
     print('sender_id = '+ sender_id)
     print('message received = '+message_text)
     
+    def first_entity_value(entities, entity):
+    if entity not in entities:
+        return None
+    val = entities[entity][0]['value']
+    if not val:
+        return None
+    return val['value'] if isinstance(val, dict) else val
     
     def send(request, response):
         # We use the fb_id as equal to session_id
@@ -82,12 +89,17 @@ def wit_msg(sender_id,message_text):
     def getForecast(request):
         context = request['context']
         entities = request['entities']
-        
-        context['forecast']="sunny"
-        print('getForecast returns = ')
-        print(context)
-        print(entities)
-        
+
+        loc = first_entity_value(entities, 'location')
+        if loc:
+            context['forecast'] = 'sunny'
+            if context.get('missingLocation') is not None:
+                del context['missingLocation']
+        else:
+            context['missingLocation'] = True
+            if context.get('forecast') is not None:
+                del context['forecast']
+
         return context
         
     def getGreeting(request):
@@ -95,16 +107,38 @@ def wit_msg(sender_id,message_text):
         entities = request['entities']
         
         greet_list=['Hello!',
-                    'Xera is at your service.',
                     'At your service.',
                     'Yes?',
                     'Greetings!',
-                    'I am listening...',
+                    'I am listening.',
                     'Listening.',
                     'I read you',
                     'Reading you loud and clear.',]
         shuffle(greet_list)
-        context['greeting'] = greet_list[0]
+        
+        greet_list1=['Xera hears you.',
+                     'Xera is at your service.',
+                     'Xera is ready.',]
+        shuffle(greet_list1)
+        
+        loc1 = first_entity_value(entities, 'siri')
+        loc2 = first_entity_value(entities, 'alexa')
+        loc3 = first_entity_value(entities, 'cortana')
+        loc4 = first_entity_value(entities, 'xera')
+        
+        if loc1 or loc2 or loc3:
+            context['otherbot'] = True
+            if context.get('greeting') is not None:
+                del context['greeting']
+        elif loc4:
+            context['greeting'] = greet_list1[0]
+        else:
+            context['greeting'] = greet_list[0]
+            if context.get('otherbot') is not None:
+                del context['otherbot']
+            
+        
+        
 
         return context
         

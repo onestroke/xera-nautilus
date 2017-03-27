@@ -25,7 +25,7 @@ def verify():
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
 
-    return "Hello world, edit 26/03/17 1250", 200
+    return "Hello world, edit 27/03/17 0130", 200
 
 
 @app.route('/', methods=['POST'])
