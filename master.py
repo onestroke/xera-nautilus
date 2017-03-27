@@ -90,6 +90,7 @@ def wit_msg(sender_id,message_text):
         context = request['context']
         entities = request['entities']
 
+
         loc = first_entity_value(entities, 'location')
         if loc:
             context['forecast'] = 'sunny'
@@ -105,6 +106,10 @@ def wit_msg(sender_id,message_text):
     def getGreeting(request):
         context = request['context']
         entities = request['entities']
+        print('######################################################')
+        print('entities = ')
+        print(entities)
+        print('######################################################')
         
         greet_list=['Hello!',
                     'At your service.',
@@ -127,12 +132,15 @@ def wit_msg(sender_id,message_text):
         loc4 = first_entity_value(entities, 'xera')
         
         if loc1 or loc2 or loc3:
+            print('running other bot')
             context['otherbot'] = True
             if context.get('greeting') is not None:
                 del context['greeting']
         elif loc4:
+            print('running xera')
             context['greeting'] = greet_list1[0]
         else:
+            print('running standard greeting')
             context['greeting'] = greet_list[0]
             if context.get('otherbot') is not None:
                 del context['otherbot']
