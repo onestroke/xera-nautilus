@@ -53,6 +53,7 @@ def webhook():
                     #print('echo?: ')
                     #print(messaging_event["message"]["is_echo"])
                     if sender_id != '265568127232416' and recipient_id == '265568127232416':
+                        print('running wit_msg from app.py')
                         wit_msg(sender_id,message_text)
                     #send_message(sender_id, "ggwp")
 
