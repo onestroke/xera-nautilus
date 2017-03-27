@@ -198,6 +198,7 @@ def wit_msg(sender_id,message_text):
         'getJoke': getJoke,
         'getForecast': getForecast,
         'getGreeting':getGreeting,
+        'getID':getID,
     }
     print('actions =')
     print(actions)
