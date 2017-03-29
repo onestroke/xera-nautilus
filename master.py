@@ -14,7 +14,7 @@ from flask import Flask, request
 import sys
 from wit1 import Wit
 
-from general_interactions_1 import getGreeting
+from general_interactions_1 import getGreeting, getID
 
 
 
@@ -109,16 +109,7 @@ def wit_msg(sender_id,message_text):
         
     
         
-    def getID(requests):
-        print('running getID')
-        context = request['context']
-        entities = request['entities']
-
-
-        
-        
-        
-        return context
+    
         
     
     actions = {
