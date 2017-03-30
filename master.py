@@ -33,21 +33,22 @@ def wit_msg(sender_id,message_text):
     
     print('running wit msg')
     print('sender_id = '+ sender_id)
-    print('message received = '+message_text)
+    print('message received = ' + message_text)
         
     def send(request, response):
         # We use the fb_id as equal to session_id
         print('reponse to be sent= ')
-        print(response)
+        
         fb_id = request['session_id']
         text = response['text']
+        print(text)
         # send message
         print('sending to send_message: '+text)
         send_message(fb_id,text)
         
     def send_message(recipient_id, message_text):
         print('sending to fb: '+ message_text)
-
+    
         #log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
     
         params = {
@@ -78,23 +79,23 @@ def wit_msg(sender_id,message_text):
             return True
         else:
             return None
-
+    
     def getJoke(request):
     #    context = request['context']
     #    entities = request['entities']
-   # 
-   #     print(context)
-   #     print(entities)
-   # 
-   #     print('you are a joke haha')
-   # 
+       # 
+       #     print(context)
+       #     print(entities)
+       # 
+       #     print('you are a joke haha')
+       # 
         return context
         
     def getForecast(request):
         context = request['context']
         entities = request['entities']
-
-
+    
+    
         loc = first_entity_value(entities, 'location')
         if loc:
             context['forecast'] = 'sunny'
@@ -104,7 +105,7 @@ def wit_msg(sender_id,message_text):
             context['missingLocation'] = True
             if context.get('forecast') is not None:
                 del context['forecast']
-
+    
         return context
         
     
@@ -125,8 +126,10 @@ def wit_msg(sender_id,message_text):
     client=Wit(access_token=access_token)
     #client.access_token=access_token
     client.actions=actions
+    
     client.run_actions(session_id=sender_id, message=message_text)
     message_text=None
+    
     #client.interactive()
     
 
