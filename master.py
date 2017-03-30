@@ -23,7 +23,7 @@ from general_interactions_1 import getGreeting, getID
 #    print('usage: python ' + sys.argv[0] + ' <wit-token>')
 #    exit(1)
 
-access_token = 'Q5DRP6ZSCTOFVZPEUVNP5OUICEY2K36C'
+access_token = 'UYXK6GEJCHUI4KNSGO2P6Z3CLZL2KZ7T'
 
 def test1():
     print('test1 working')

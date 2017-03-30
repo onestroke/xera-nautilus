@@ -18,7 +18,7 @@ def first_entity_value(entities, entity):
         if entities==None:
             return None
         elif entities['intent'][0]['value']==entity:
-            return True
+            return entity
         else:
             return None
 
@@ -50,20 +50,15 @@ def getGreeting(request):
                  'It would be an honour to assist you.',]
     shuffle(greet_list1)
     
-    loc1 = first_entity_value(entities, 'siri')
-    loc2 = first_entity_value(entities, 'alexa')
-    loc3 = first_entity_value(entities, 'cortana')
-    loc4 = first_entity_value(entities, 'xera')
+    loc = first_entity_value(entities, 'contact')
+    
    
     
-    if loc1 or loc2 or loc3:
-        print('running otherbot')
-        context['otherbot'] = True
+    if loc:
+        print('running WithName')
+        context['WithName'] = True
         if context.get('greeting') is not None:
             del context['greeting']
-    elif loc4:
-        print('running xera')
-        context['greeting'] = greet_list1[0]
     else:
         print('running standard greeting')
         context['greeting'] = greet_list[0]
