@@ -139,6 +139,7 @@ class Wit(object):
 
         if json['type'] == 'error':
             raise WitError('Oops, I don\'t know what to do.')
+            exit(1)
 
         if json['type'] == 'stop':
             return context
