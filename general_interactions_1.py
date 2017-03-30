@@ -15,12 +15,13 @@ import sys
 from wit1 import Wit
 
 def first_entity_value(entities, entity):
-        if entities==None:
-            return None
-        elif entities['intent'][0]['value']==entity:
-            return entity
-        else:
-            return None
+    print('running f_e_v')
+    if entities==None:
+        return None
+    elif entities['intent'][0]['value']==entity:
+        return entity
+    else:
+        return None
 
 def getGreeting(request):
     print('running greeting')
