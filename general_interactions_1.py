@@ -14,13 +14,17 @@ from flask import Flask, request
 import sys
 from wit1 import Wit
 
-def first_entity_value(entities, entity):
+def find_entity(entities, entity):
     print('running f_e_v')
     if entities==None:
+        print('return none')
         return None
-    elif entities['intent'][0]['value']==entity:
-        return entity
+    elif entities[entity][0]['value']!=None:
+        value=entities[entity][0]['value']
+        print('return '+value)
+        return value
     else:
+        print('return none')
         return None
 
 def getGreeting(request):
@@ -55,16 +59,16 @@ def getGreeting(request):
     
    
     
-    if loc:
+    if loc=='xera':
         print('running WithName')
-        context['WithName'] = True
+        context['WithName'] = greet_list1[0]
         if context.get('greeting') is not None:
             del context['greeting']
     else:
         print('running standard greeting')
         context['greeting'] = greet_list[0]
-        if context.get('otherbot') is not None:
-            del context['otherbot']
+        if context.get('WithName') is not None:
+            del context['WithName']
         
     return context
         
