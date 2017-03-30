@@ -55,7 +55,7 @@ def getGreeting(request):
                  'It would be an honour to assist you.',]
     shuffle(greet_list1)
     
-    loc = first_entity_value(entities, 'contact')
+    loc = find_entity(entities, 'contact')
     
    
     
