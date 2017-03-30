@@ -138,9 +138,10 @@ class Wit(object):
             json['action'] = 'merge'
 
         if json['type'] == 'error':
-            raise WitError('Oops, I don\'t know what to do.')
             print('exiting')
             exit(1)
+            raise WitError('Oops, I don\'t know what to do.')
+            
 
         if json['type'] == 'stop':
             return context
