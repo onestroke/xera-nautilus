@@ -49,10 +49,11 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
 
                     print('Message received by app.py = ' + message_text)
-                    
+                    send_message(sender_id, 'ggwp')
                     if sender_id != '265568127232416' and recipient_id == '265568127232416':
                         print('Running wit_msg from app.py')
-                        wit_msg(sender_id,message_text)
+                        send_message(sender_id, 'ggwp')
+                        #wit_msg(sender_id,message_text)
                     else:
                         print('Not running wit_msg')
 
