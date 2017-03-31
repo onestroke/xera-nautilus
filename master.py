@@ -26,28 +26,28 @@ from general_interactions_1 import getGreeting
 access_token = 'UYXK6GEJCHUI4KNSGO2P6Z3CLZL2KZ7T'
 
 def test1():
-    print('test1 working')
+    print('master.py working')
     return None
 
 def wit_msg(sender_id,message_text):
     
-    print('running wit msg')
-    print('sender_id = '+ sender_id)
-    print('message received = ' + message_text)
+    print('Running wit_msg in master.py')
+    print('Sender_id = '+ sender_id)
+    print('Message received = ' + message_text)
         
     def send(request, response):
         # We use the fb_id as equal to session_id
-        print('reponse to be sent= ')
+        print('Reponse to be sent= ')
         
         fb_id = request['session_id']
         text = response['text']
         print(text)
         # send message
-        print('sending to send_message: '+text)
+        print('Sending to send_message: '+text)
         send_message(fb_id,text)
         
     def send_message(recipient_id, message_text):
-        print('sending to fb: '+ message_text)
+        print('Sending to fb: '+ message_text)
     
         #log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
     
@@ -65,7 +65,7 @@ def wit_msg(sender_id,message_text):
                 "text": message_text
             }
         })
-        print('posting')
+        print('Posting to messenger now...')
         r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
         #if r.status_code != 200:
             #log(r.status_code)
@@ -129,7 +129,7 @@ def wit_msg(sender_id,message_text):
         'getGreeting':getGreeting,
         'getID':getID,
     }
-    print('actions =')
+    print('Complete set of actions = ')
     print(actions)
     #client = Wit(access_token=access_token, actions=actions)
     client=Wit(access_token=access_token)

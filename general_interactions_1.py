@@ -29,13 +29,13 @@ def find_entity(entities, entity):
 
 def getGreeting(request):
 
-    print('running greeting')
+    print('Running getGreeting')
     context = request['context']
     entities = request['entities']
-    print('######################################################')
     print('entities = ')
     print(entities)
-    print('######################################################')
+    print('context = ')
+    print(context)
     
     greet_list=['Hello...',
                 'Yes...',

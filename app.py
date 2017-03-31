@@ -34,7 +34,7 @@ def webhook():
     # endpoint for processing incoming messaging events
 
     data = request.get_json()
-    print('raw data: ')
+    print('Messaging Event from FB = ')
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     if data["object"] == "page":
@@ -48,15 +48,13 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    print('message received by app.py: ' + message_text)
-                    #print('echo?: ')
-                    #print(messaging_event["message"]["is_echo"])
-                    #if sender_id != '265568127232416' and recipient_id == '265568127232416'and message_text!='hello':
-                       # print('running wit_msg from app.py')
-                      #  wit_msg(sender_id,message_text)
-                    #else:
-                     #   print('not running wit_msg')
-                    #send_message(sender_id, "ggwp")
+                    print('Message received by app.py = ' + message_text)
+                    
+                    if sender_id != '265568127232416' and recipient_id == '265568127232416'and message_text!='hello':
+                        print('Running wit_msg from app.py')
+                        wit_msg(sender_id,message_text)
+                    else:
+                        print('Not running wit_msg')
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
