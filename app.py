@@ -51,11 +51,11 @@ def webhook():
                     print('message received by app.py: ' + message_text)
                     #print('echo?: ')
                     #print(messaging_event["message"]["is_echo"])
-                    if sender_id != '265568127232416' and recipient_id == '265568127232416'and message_text!='hello':
-                        print('running wit_msg from app.py')
-                        wit_msg(sender_id,message_text)
-                    else:
-                        print('not running wit_msg')
+                    #if sender_id != '265568127232416' and recipient_id == '265568127232416'and message_text!='hello':
+                       # print('running wit_msg from app.py')
+                      #  wit_msg(sender_id,message_text)
+                    #else:
+                     #   print('not running wit_msg')
                     #send_message(sender_id, "ggwp")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
