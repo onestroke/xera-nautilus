@@ -28,7 +28,7 @@ def find_entity(entities, entity):
         return None
 
 def getGreeting(request):
-<<<<<<< HEAD
+
     print('running greeting')
     context = request['context']
     entities = request['entities']
@@ -70,53 +70,6 @@ def getGreeting(request):
         context['greeting'] = greet_list[0]
         if context.get('WithName') is not None:
             del context['WithName']
-=======
-        print('running greeting')
-        context = request['context']
-        entities = request['entities']
-        print('######################################################')
-        print('entities = ')
-        print(entities)
-        print('######################################################')
->>>>>>> parent of 3c1bc35... test
+
         
-        greet_list=['Hello...',
-                    'Yes...',
-                    '...(Insert standard greeting)',
-                    'I can hear you...',
-                    'Listening...',
-                    'I hear you...',
-                    'Hmmph!',]
-        shuffle(greet_list)
-        
-        greet_list1=['Xera hears you!',
-                     'Xera is at your service.',
-                     'I am at your service.',
-                     'Yes?',
-                     'Xera is ready!',
-                     'I am ready!',
-                     'Xera sees you, and is happy to assist.',
-                     'It would be an honour to assist you.',]
-        shuffle(greet_list1)
-        
-        loc1 = first_entity_value(entities, 'siri')
-        loc2 = first_entity_value(entities, 'alexa')
-        loc3 = first_entity_value(entities, 'cortana')
-        loc4 = first_entity_value(entities, 'xera')
-       
-        
-        if loc1 or loc2 or loc3:
-            print('running otherbot')
-            context['otherbot'] = True
-            if context.get('greeting') is not None:
-                del context['greeting']
-        elif loc4:
-            print('running xera')
-            context['greeting'] = greet_list1[0]
-        else:
-            print('running standard greeting')
-            context['greeting'] = greet_list[0]
-            if context.get('otherbot') is not None:
-                del context['otherbot']
-            
-        return context
+    return context
