@@ -45,14 +45,13 @@ def webhook():
                 if messaging_event.get("message"):  # someone sent us a message
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    print(type(sender_id))
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    print('message received by app.py: '+message_text)
+                    print('message received by app.py: ' + message_text)
                     #print('echo?: ')
                     #print(messaging_event["message"]["is_echo"])
-                    if sender_id != '265568127232416' and recipient_id == '265568127232416':
+                    if sender_id != '265568127232416' and recipient_id == '265568127232416'and message_text!='hello':
                         print('running wit_msg from app.py')
                         wit_msg(sender_id,message_text)
                     else:
