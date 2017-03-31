@@ -12,7 +12,7 @@ import requests
 from flask import Flask, request
 
 import sys
-from wit1 import Wit
+from wit2 import Wit
 
 def find_entity(entities, entity):
     print('running f_e_v')
