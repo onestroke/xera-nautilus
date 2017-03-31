@@ -50,7 +50,7 @@ def webhook():
 
                     print('Message received by app.py = ' + message_text)
                     
-                    if sender_id != '265568127232416' and recipient_id == '265568127232416'and message_text!='hello':
+                    if sender_id != '265568127232416' and recipient_id == '265568127232416':
                         print('Running wit_msg from app.py')
                         wit_msg(sender_id,message_text)
                     else:
