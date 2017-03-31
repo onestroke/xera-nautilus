@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Mar 31 02:58:53 2017
-
-@author: alexr
-"""
-
 from __future__ import unicode_literals
 import json
 import logging
@@ -90,7 +83,6 @@ class Wit(object):
         in binary mode is strongly reccomended (see
         http://docs.python-requests.org/en/master/user/advanced/#streaming-uploads).
         Add Content-Type header as specified here: https://wit.ai/docs/http/20160526#post--speech-link
-
         :param audio_file: an open handler to an audio file
         :param verbose:
         :param headers: an optional dictionary with request headers
@@ -196,7 +188,6 @@ class Wit(object):
     def interactive(self, context=None, max_steps=DEFAULT_MAX_STEPS):
         """Runs interactive command line chat between user and bot. Runs
         indefinately until EOF is entered to the prompt.
-
         context -- optional initial context. Set to {} if omitted
         max_steps -- max number of steps for run_actions.
         """
