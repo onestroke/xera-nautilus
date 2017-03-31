@@ -14,7 +14,7 @@ from flask import Flask, request
 import sys
 from wit2 import Wit
 
-from general_interactions_1 import getGreeting
+from general_interactions_1 import getGreeting, test2
 
 
 
@@ -81,54 +81,42 @@ def wit_msg(sender_id,message_text):
         else:
             return None
     
-    def getJoke(request):
-    #    context = request['context']
-    #    entities = request['entities']
-       # 
-       #     print(context)
-       #     print(entities)
-       # 
-       #     print('you are a joke haha')
-       # 
-        return context
+    #def getJoke(request):
+    
+    #    return context
         
-    def getForecast(request):
-        context = request['context']
-        entities = request['entities']
-    
-    
-        loc = first_entity_value(entities, 'location')
-        if loc:
-            context['forecast'] = 'sunny'
-            if context.get('missingLocation') is not None:
-                del context['missingLocation']
-        else:
-            context['missingLocation'] = True
-            if context.get('forecast') is not None:
-                del context['forecast']
-    
-        return context
+#    def getForecast(request):
+#        context = request['context']
+#        entities = request['entities']
+#    
+#    
+#        loc = first_entity_value(entities, 'location')
+#        if loc:
+#            context['forecast'] = 'sunny'
+#            if context.get('missingLocation') is not None:
+#                del context['missingLocation']
+#        else:
+#            context['missingLocation'] = True
+#            if context.get('forecast') is not None:
+#                del context['forecast']
+#    
+#        return context
         
     
         
-    def getID(requests):
-        print('running getID')
-        context = request['context']
-        entities = request['entities']
-
-
-        
-        
-        
-        return context
+#    def getID(requests):
+#        print('running getID')
+#        context = request['context']
+#        entities = request['entities']
+#        return context
         
     
     actions = {
         'send': send,
-        'getJoke': getJoke,
-        'getForecast': getForecast,
-        'getGreeting':getGreeting,
-        'getID':getID,
+#        'getJoke': getJoke,
+#        'getForecast': getForecast,
+        'getGreeting':test2,
+#        'getID':getID,
     }
     print('Complete set of actions = ')
     print(actions)

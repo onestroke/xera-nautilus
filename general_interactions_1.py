@@ -73,3 +73,15 @@ def getGreeting(request):
 
         
     return context
+    
+def test2(request):
+
+    print('Running getGreeting')
+    context = request['context']
+    entities = request['entities']
+    print('entities = ')
+    print(entities)
+    print('context = ')
+    print(context)
+    
+    return context
