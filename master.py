@@ -41,6 +41,7 @@ def wit_msg(sender_id,message_text):
         
         fb_id = request['session_id']
         text = response['text']
+        text=str(text)
         print(text)
         # send message
         print('Sending to send_message: '+text)
