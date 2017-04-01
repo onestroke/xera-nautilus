@@ -76,31 +76,28 @@ def send_message(recipient_id, message_text):
     return None
     
 def first_entity_value(entities, entity):
-    if entities==None:
+    """
+    Returns first entity value
+    """
+    if entity not in entities:
         return None
-    elif entities['intent'][0]['value']==entity:
-        return True
-    else:
+    val = entities[entity][0]['value']
+    if not val:
         return None
-
-def getJoke(request):
-#    context = request['context']
-#    entities = request['entities']
-   # 
-   #     print(context)
-   #     print(entities)
-   # 
-   #     print('you are a joke haha')
-   # 
-    return context
+    return val['value'] if isinstance(val, dict) else val
     
-def getForecast(request):
+    
+    
+    
+    
+def get_forecast(request):
     context = request['context']
     entities = request['entities']
-
-
     loc = first_entity_value(entities, 'location')
+    print('loc = ')
+    print(loc)
     if loc:
+        # This is where we could use a weather service api to get the weather.
         context['forecast'] = 'sunny'
         if context.get('missingLocation') is not None:
             del context['missingLocation']
@@ -108,29 +105,12 @@ def getForecast(request):
         context['missingLocation'] = True
         if context.get('forecast') is not None:
             del context['forecast']
-
     return context
-    
 
-    
-def getID(requests):
-    print('running getID')
-    context = request['context']
-    entities = request['entities']
-
-
-    
-    
-    
-    return context
-    
-
+# Setup Actions
 actions = {
     'send': send,
-    'getJoke': getJoke,
-    'getForecast': getForecast,
-    'getGreeting':getGreeting,
-    'getID':getID,
+    'getForecast': get_forecast,
 }
 print('Complete set of actions = ')
 print(actions)
@@ -141,11 +121,11 @@ client.actions=actions
 
 
 sender_id='1117609775034736'
-message_text='hello'
+message_text='What is the weather in Rome?'
 
 #client.converse(session_id=sender_id, message=message_text,context={})
-#client.run_actions(session_id=sender_id, message=message_text, context={})
-client.interactive()
+client.run_actions(session_id=sender_id, message=message_text, context={})
+#client.interactive()
     
 
     
