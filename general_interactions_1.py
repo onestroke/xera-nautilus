@@ -19,10 +19,10 @@ def find_entity(entities, entity):
     if entities==None:
         print('return none')
         return None
-    elif entities[entity][0]['value']!=None:
-        value=entities[entity][0]['value']
-        print('return '+value)
-        return value
+#    elif entities[entity][0]['value']!=None:
+#        value=entities[entity][0]['value']
+#        print('return '+value)
+#        return value
     else:
         print('return none')
         return None
