@@ -38,6 +38,10 @@ def wit_msg(sender_id,message_text):
     print('Running wit_msg in master.py')
     print('Sender_id = '+ sender_id)
     print('Message received = ' + message_text)
+    
+    def log(message):  # simple wrapper for logging to stdout on heroku
+        print(str(message))
+        sys.stdout.flush()
         
     def send(request, response):
         """Sends response to FB"""
@@ -58,7 +62,7 @@ def wit_msg(sender_id,message_text):
         
         print('Sending to fb: '+ message_text)
     
-        #log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+        log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
     
         params = {
             "access_token": os.environ["PAGE_ACCESS_TOKEN"]
