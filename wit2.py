@@ -109,6 +109,8 @@ class Wit(object):
             params['reset'] = True
         resp = req(self.logger, self.access_token, 'POST', '/converse', params,
                    data=json.dumps(context))
+        print('wit2.resp=')
+        print(resp)
         return resp
 
     def __run_actions(self, session_id, current_request, message, context, i,
@@ -175,6 +177,7 @@ class Wit(object):
         # All the previous ones are discarded (preemptive exit).
         current_request = self._sessions[session_id] + 1 if session_id in self._sessions else 1
         self._sessions[session_id] = current_request
+
 
         context = self.__run_actions(session_id, current_request, message,
                                      context, max_steps, verbose)
