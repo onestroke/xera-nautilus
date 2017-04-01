@@ -58,8 +58,6 @@ def getGreeting(request):
     
     loc = find_entity(entities, 'contact')
     
-   
-    
     if loc=='xera':
         print('running WithName')
         context['WithName'] = greet_list1[0]
