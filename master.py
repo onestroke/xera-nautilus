@@ -26,28 +26,36 @@ from general_interactions_1 import getGreeting, test2
 access_token = 'UYXK6GEJCHUI4KNSGO2P6Z3CLZL2KZ7T'
 
 def test1():
+    """Show that app.py can call master.py""""
+    
     print('master.py working')
     return None
 
 def wit_msg(sender_id,message_text):
+    """Function called by app.py. From FB_ID of sender and message received, 
+    sends responses to FB"""
     
     print('Running wit_msg in master.py')
     print('Sender_id = '+ sender_id)
     print('Message received = ' + message_text)
         
     def send(request, response):
+        """Sends response to FB"""
+        
         # We use the fb_id as equal to session_id
         print('Reponse to be sent= ')
         
         fb_id = request['session_id']
         text = response['text']
-        text=str(text)
         print(text)
+        
         # send message
         print('Sending to send_message: '+text)
         send_message(fb_id,text)
         
     def send_message(recipient_id, message_text):
+        """Sends response to FB"""
+        
         print('Sending to fb: '+ message_text)
     
         #log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
@@ -68,12 +76,15 @@ def wit_msg(sender_id,message_text):
         })
         print('Posting to messenger now...')
         r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-        #if r.status_code != 200:
-            #log(r.status_code)
-            #log(r.text)
+        if r.status_code != 200:
+            print(r.status_code)
+            print(r.text)
         return None
         
+        
     def first_entity_value(entities, entity):
+        """Searches for intent within entities and returns value of intent"""
+        
         if entities==None:
             return None
         elif entities['intent'][0]['value']==entity:
