@@ -76,6 +76,7 @@ def test2(request):
 
     print('Running getGreeting')
     context = request['context']
+    context['greeting']='hey there!'
     entities = request['entities']
     print('entities = ')
     print(entities)
