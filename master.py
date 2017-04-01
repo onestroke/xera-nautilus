@@ -26,7 +26,7 @@ from general_interactions_1 import getGreeting, test2
 access_token = 'UYXK6GEJCHUI4KNSGO2P6Z3CLZL2KZ7T'
 
 def test1():
-    """Show that app.py can call master.py""""
+    """Show that app.py can call master.py"""
     
     print('master.py working')
     return None
