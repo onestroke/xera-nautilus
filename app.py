@@ -53,7 +53,7 @@ def webhook():
                     if sender_id != '265568127232416' and recipient_id == '265568127232416':
                         print('Running wit_msg from app.py')
                         send_message(sender_id, 'Xera is thinking...')
-                        wit_msg(sender_id,message_text)
+                        #wit_msg(sender_id,message_text)
                     else:
                         print('Not running wit_msg')
 

@@ -30,7 +30,7 @@ from general_interactions_1 import getGreeting
 #    print('usage: python ' + sys.argv[0] + ' <wit-token>')
 #    exit(1)
 
-access_token = 'UYXK6GEJCHUI4KNSGO2P6Z3CLZL2KZ7T'
+access_token = 'GQNHRLJQB5OUUU4ZRZCWCP2MRHJGFTDG'
 
 
     
