@@ -166,6 +166,18 @@ class Wit(object):
 
     def run_actions(self, session_id, message, context=None,
                     max_steps=DEFAULT_MAX_STEPS, verbose=None):
+        
+        print('session_id = ')
+        print(session_id)
+        print('message = ')
+        print(message)
+        print('context = ')
+        print(context)
+        print('max_steps = ')
+        print(max_steps)
+        print('verbose = ')
+        print(verbose)
+        
         if not self.actions:
             self.throw_must_have_actions()
         if context is None:
@@ -214,7 +226,10 @@ class Wit(object):
                 message = prompt(INTERACTIVE_PROMPT, history=history, mouse_support=True).rstrip()
             except (KeyboardInterrupt, EOFError):
                 return
+            print('context = ')
+            print(self.run_actions(session_id, message, context, max_steps))
             context = self.run_actions(session_id, message, context, max_steps)
+            
 
     def throw_if_action_missing(self, action_name):
         if action_name not in self.actions:

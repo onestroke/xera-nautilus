@@ -139,9 +139,12 @@ client=Wit(access_token=access_token)
 #client.access_token=access_token
 client.actions=actions
 
-#client.run_actions(session_id=sender_id, message=message_text)
 
+sender_id='1117609775034736'
+message_text='hello'
 
+#client.converse(session_id=sender_id, message=message_text,context={})
+#client.run_actions(session_id=sender_id, message=message_text, context={})
 client.interactive()
     
 
