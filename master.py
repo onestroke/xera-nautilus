@@ -87,12 +87,42 @@ def wit_msg(sender_id,message_text):
         
         
     
+
+
+    def first_entity_value(entities, entity):
+        """
+        Returns first entity value
+        """
+        if entity not in entities:
+            return None
+        val = entities[entity][0]['value']
+        if not val:
+            return None
+        return val['value'] if isinstance(val, dict) else val
+    
+    
+    
+    
+    
+    def get_forecast(request):
+        context = request['context']
+        entities = request['entities']
+        loc = first_entity_value(entities, 'location')
+        if loc:
+            # This is where we could use a weather service api to get the weather.
+            context['forecast'] = 'sunny'
+            if context.get('missingLocation') is not None:
+                del context['missingLocation']
+        else:
+            context['missingLocation'] = True
+            if context.get('forecast') is not None:
+                del context['forecast']
+        return context
+
+    # Setup Actions
     actions = {
         'send': send,
-#        'getJoke': getJoke,
-#        'getForecast': getForecast,
-        'getGreeting': test2,
-#        'getID':getID,
+        'getForecast': get_forecast,
     }
     print('Complete set of actions = ')
     print(actions)
