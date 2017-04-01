@@ -86,6 +86,45 @@ def wit_msg(sender_id,message_text):
         return None
         
         
+    def first_entity_value(entities, entity):
+        """Searches for intent within entities and returns value of intent"""
+        
+        if entities==None:
+            return None
+        elif entities['intent'][0]['value']==entity:
+            return True
+        else:
+            return None
+    
+    #def getJoke(request):
+    
+    #    return context
+        
+#    def getForecast(request):
+#        context = request['context']
+#        entities = request['entities']
+#    
+#    
+#        loc = first_entity_value(entities, 'location')
+#        if loc:
+#            context['forecast'] = 'sunny'
+#            if context.get('missingLocation') is not None:
+#                del context['missingLocation']
+#        else:
+#            context['missingLocation'] = True
+#            if context.get('forecast') is not None:
+#                del context['forecast']
+#    
+#        return context
+        
+    
+        
+#    def getID(requests):
+#        print('running getID')
+#        context = request['context']
+#        entities = request['entities']
+#        return context
+        
     
     actions = {
         'send': send,
