@@ -126,7 +126,7 @@ def wit_msg(sender_id,message_text):
         'send': send,
 #        'getJoke': getJoke,
 #        'getForecast': getForecast,
-        'getGreeting':test2,
+        'getGreeting': getGreeting,
 #        'getID':getID,
     }
     print('Complete set of actions = ')
