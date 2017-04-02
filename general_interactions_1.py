@@ -87,13 +87,13 @@ def getGreeting(request):
     
     loc = first_entity_value(entities, 'contact')
     
-    if loc=='xera':
+    if loc=='xera' or loc =='Xera':
         print('running WithName')
         context['WithName'] = greet_list1[0]
         if context.get('greeting') is not None:
             del context['greeting']
     else:
-        print('running standard greeting')
+        print('running greeting')
         context['greeting'] = greet_list[0]
         if context.get('WithName') is not None:
             del context['WithName']
