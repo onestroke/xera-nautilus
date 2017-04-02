@@ -14,18 +14,43 @@ from flask import Flask, request
 import sys
 from wit2 import Wit
 
-def find_entity(entities, entity):
-    print('running f_e_v')
-    if entities==None:
-        print('return none')
+def first_entity_value(entities, entity):
+    """
+    Returns first entity value
+    """
+    if entity not in entities:
         return None
-#    elif entities[entity][0]['value']!=None:
-#        value=entities[entity][0]['value']
-#        print('return '+value)
-#        return value
+    val = entities[entity][0]['value']
+    if not val:
+        return None
+    return val['value'] if isinstance(val, dict) else val
+
+def test2(request):
+
+    print('Running test2')
+    context = request['context']
+    entities = request['entities']
+    print('entities = ')
+    print(entities)
+    print('context = ')
+    print(context)
+    
+    return context
+    
+def getForecast(request):
+    context = request['context']
+    entities = request['entities']
+    loc = first_entity_value(entities, 'location')
+    if loc:
+        # This is where we could use a weather service api to get the weather.
+        context['forecast'] = 'sunny'
+        if context.get('missingLocation') is not None:
+            del context['missingLocation']
     else:
-        print('return none')
-        return None
+        context['missingLocation'] = True
+        if context.get('forecast') is not None:
+            del context['forecast']
+    return context
 
 def getGreeting(request):
 
@@ -56,7 +81,7 @@ def getGreeting(request):
                  'It would be an honour to assist you.',]
     shuffle(greet_list1)
     
-    loc = find_entity(entities, 'contact')
+    loc = first_entity_value(entities, 'contact')
     
     if loc=='xera':
         print('running WithName')
@@ -72,15 +97,11 @@ def getGreeting(request):
         
     return context
     
-def test2(request):
 
-    print('Running getGreeting')
-    context = request['context']
-    context['greeting']='hey there!'
-    entities = request['entities']
-    print('entities = ')
-    print(entities)
-    print('context = ')
-    print(context)
     
-    return context
+
+
+
+
+
+

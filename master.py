@@ -14,7 +14,7 @@ from flask import Flask, request
 import sys
 from wit2 import Wit
 
-from general_interactions_1 import getGreeting, test2
+from general_interactions_1 import getGreeting, test2, getForecast
 
 
 
@@ -85,44 +85,14 @@ def wit_msg(sender_id,message_text):
             print(r.text)
         return None
         
-        
     
-
-
-    def first_entity_value(entities, entity):
-        """
-        Returns first entity value
-        """
-        if entity not in entities:
-            return None
-        val = entities[entity][0]['value']
-        if not val:
-            return None
-        return val['value'] if isinstance(val, dict) else val
-    
-    
-    
-    
-    
-    def get_forecast(request):
-        context = request['context']
-        entities = request['entities']
-        loc = first_entity_value(entities, 'location')
-        if loc:
-            # This is where we could use a weather service api to get the weather.
-            context['forecast'] = 'sunny'
-            if context.get('missingLocation') is not None:
-                del context['missingLocation']
-        else:
-            context['missingLocation'] = True
-            if context.get('forecast') is not None:
-                del context['forecast']
-        return context
 
     # Setup Actions
     actions = {
         'send': send,
-        'getForecast': get_forecast,
+        'getForecast': getForecast,
+        'getGreeting': getGreeting,
+        'test2': test2,
     }
     print('Complete set of actions = ')
     print(actions)
