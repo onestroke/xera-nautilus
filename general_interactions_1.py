@@ -18,6 +18,8 @@ def first_entity_value(entities, entity):
     """
     Returns first entity value
     """
+    if entity == None or entities == None:
+        return None
     if entity not in entities:
         return None
     val = entities[entity][0]['value']
