@@ -23,6 +23,8 @@ def first_entity_value(entities, entity):
     if entity not in entities:
         return None
     val = entities[entity][0]['value']
+    print('running first_entity_value')
+    print('val = ' + val)
     if not val:
         return None
     return val['value'] if isinstance(val, dict) else val
