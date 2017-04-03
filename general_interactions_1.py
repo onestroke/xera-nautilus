@@ -13,21 +13,9 @@ from flask import Flask, request
 
 import sys
 from wit2 import Wit
+from misc_fn import first_entity_value
 
-def first_entity_value(entities, entity):
-    """
-    Returns first entity value
-    """
-    if entity == None or entities == None:
-        return None
-    if entity not in entities:
-        return None
-    val = entities[entity][0]['value']
-    print('running first_entity_value')
-    print('val = ' + val)
-    if not val:
-        return None
-    return val['value'] if isinstance(val, dict) else val
+
 
 def test2(request):
 
