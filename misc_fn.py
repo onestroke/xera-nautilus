@@ -20,3 +20,11 @@ def first_entity_value(entities, entity):
         return None
     return val['value'] if isinstance(val, dict) else val
 
+def compare(str1, str2):
+    str1=str(str1)
+    str2=str(str2)
+    if str1.casefold==str2.casefold:
+        return True
+    else:
+        return False
+

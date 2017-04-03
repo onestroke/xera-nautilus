@@ -13,7 +13,7 @@ from flask import Flask, request
 
 import sys
 from wit2 import Wit
-from misc_fn import first_entity_value
+from misc_fn import first_entity_value, compare
 
 
 
@@ -75,9 +75,24 @@ def getGreeting(request):
     
     loc = first_entity_value(entities, 'contact')
     
-    if loc=='xera' or loc =='Xera':
-        print('running WithName')
+    if compare(loc,'xera')==True:
+        print('running WithName(XERA)')
         context['WithName'] = greet_list1[0]
+        if context.get('greeting') is not None:
+            del context['greeting']
+    elif compare(loc,'siri')==True:
+        print('running WithName(SIRI)')
+        context['WithName'] = 'Do I look like dumb blonde living in an overpriced phone?'
+        if context.get('greeting') is not None:
+            del context['greeting']
+    elif compare(loc,'alexa')==True:
+        print('running WithName(ALEXA)')
+        context['WithName'] = 'I am neither mythical, savage, nor missing my right boob.'
+        if context.get('greeting') is not None:
+            del context['greeting']
+    elif compare(loc,'cortana')==True:
+        print('running WithName(CORTANA)')
+        context['WithName'] = 'You need treatment John. That PTSD cant go on forever.'
         if context.get('greeting') is not None:
             del context['greeting']
     else:
