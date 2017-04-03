@@ -95,6 +95,11 @@ def getGreeting(request):
         context['WithName'] = 'You need treatment John. That PTSD cant go on forever.'
         if context.get('greeting') is not None:
             del context['greeting']
+    elif loc!= None and entities['contact'][0]['confidence']>=0.8:
+        print('running WithName(Unrecognised Name)')
+        context['WithName']='I am not '+ entities['contact'][0]['value']
+        if context.get('greeting') is not None:
+            del context['greeting']
     else:
         print('running greeting')
         context['greeting'] = greet_list[0]
