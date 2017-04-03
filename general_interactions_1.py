@@ -60,7 +60,7 @@ def getGreeting(request):
                 'I can hear you...',
                 'Listening...',
                 'I hear you...',
-                'Hmmph!',]
+                'Yeah...',]
     shuffle(greet_list)
     
     greet_list1=['Xera hears you!',
@@ -97,7 +97,7 @@ def getGreeting(request):
             del context['greeting']
     elif loc!= None and entities['contact'][0]['confidence']>=0.8:
         print('running WithName(Unrecognised Name)')
-        context['WithName']='I am not '+ entities['contact'][0]['value']
+        context['WithName']='I am not '+ entities['contact'][0]['value'] +'. Hmmph!'
         if context.get('greeting') is not None:
             del context['greeting']
     else:
