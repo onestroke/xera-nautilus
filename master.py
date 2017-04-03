@@ -101,6 +101,8 @@ def wit_msg(sender_id,message_text):
     #client.access_token=access_token
     client.actions=actions
     print(message_text)
+    resp1=client.message(message_text)
+    print(resp1)
     client.run_actions(session_id=sender_id, message=message_text)
     message_text=None
     
