@@ -100,7 +100,7 @@ def wit_msg(sender_id,message_text):
     client=Wit(access_token=access_token)
     #client.access_token=access_token
     client.actions=actions
-    
+    print(message_text)
     client.run_actions(session_id=sender_id, message=message_text)
     message_text=None
     
