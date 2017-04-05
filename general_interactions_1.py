@@ -15,6 +15,8 @@ import sys
 from wit2 import Wit
 from misc_fn import first_entity_value, compare
 
+from datetime import datetime
+
 
 
 def test2(request):
@@ -109,7 +111,12 @@ def getGreeting(request):
         
     return context
     
-
+def getTime(request):
+    context = request['context']
+    entities = request['entities']
+    context['time'] = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        
+    return context
     
 
 

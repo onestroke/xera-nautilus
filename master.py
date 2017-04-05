@@ -14,7 +14,7 @@ from flask import Flask, request
 import sys
 from wit2 import Wit
 
-from general_interactions_1 import getGreeting, test2, getForecast
+from general_interactions_1 import getGreeting, test2, getForecast, getTime
 
 
 
@@ -93,6 +93,7 @@ def wit_msg(sender_id,message_text):
         'getForecast': getForecast,
         'getGreeting': getGreeting,
         'test2': test2,
+        'getTime': getTime,
     }
     print('Complete set of actions = ')
     print(actions)
