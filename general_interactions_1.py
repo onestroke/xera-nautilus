@@ -114,7 +114,14 @@ def getGreeting(request):
 def getTime(request):
     context = request['context']
     entities = request['entities']
-    context['time'] = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    context['time'] = str(datetime.now().strftime(%H:%M:%S'))
+        
+    return context
+    
+def getDate(request):
+    context = request['context']
+    entities = request['entities']
+    context['date'] = str(datetime.now().strftime('%Y-%m-%d))
         
     return context
     
