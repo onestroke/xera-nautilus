@@ -116,7 +116,7 @@ def getGreeting(request):
 def getTime(request):
     context = request['context']
     entities = request['entities']
-    context['time'] = 'LON/CAM time is now: '+ str(datetime.now(LON_tz).strftime('%H:%M')) +''+ '. SIN time is now: ' + str(datetime.now(SIN_tz).strftime('%H:%M'))
+    context['time'] = 'LON/CAM time is now: '+ str(datetime.now(LON_tz).strftime('%H:%M')) + '.\n SIN time is now: ' + str(datetime.now(SIN_tz).strftime('%H:%M'))
         
     return context
     
