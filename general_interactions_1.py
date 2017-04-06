@@ -16,8 +16,10 @@ from wit2 import Wit
 from misc_fn import first_entity_value, compare
 
 from datetime import datetime
+from pytz import timezone
 
-
+SIN_tz=timezone('Asia/Singapore')
+LON_tz=timezone('Europe/London')
 
 def test2(request):
 
@@ -114,7 +116,7 @@ def getGreeting(request):
 def getTime(request):
     context = request['context']
     entities = request['entities']
-    context['time'] = str(datetime.now().strftime('%H:%M:%S'))
+    context['time'] = 'LON/CAM time is now: '+ str(datetime.now(LON_tz).strftime('%H:%M')) + '. SIN time is now: ' + str(datetime.now(SIN_tz).strftime('%H:%M'))
         
     return context
     
