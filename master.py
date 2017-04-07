@@ -108,6 +108,9 @@ def wit_msg(sender_id,message_text):
     client=Wit(access_token=access_token)
     #client.access_token=access_token
     client.actions=actions
+    file = open('logs.txt','r') 
+    print(file.read())
+    file.close
     print(message_text)
     resp1=client.message(message_text)
     print(resp1)

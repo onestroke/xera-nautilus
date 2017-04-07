@@ -4,10 +4,10 @@ Created on Fri Apr  7 02:26:14 2017
 
 @author: alexr
 """
-
+import json as json
 file = open("logs.txt",'r+') 
-
-file.write('hello there')
-print(file.read())
-file.close
-print('finished')
+test='adsfhkl'
+a = (test,'test1')
+json.dump(a,file)
+x1=json.load(file)
+print(x1)
