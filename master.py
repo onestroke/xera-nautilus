@@ -42,7 +42,7 @@ def wit_msg(sender_id,message_text):
     print('appending to logs.txt')
     file = open('logs.txt','a') 
     log=(sender_id, message_text)
-    file.write(a)
+    file.write(log)
     file.close
     
     def log(message):  # simple wrapper for logging to stdout on heroku
