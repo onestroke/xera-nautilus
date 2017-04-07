@@ -33,6 +33,21 @@ def test2(request):
     
     return context
     
+def template(request):
+    context = request['context']
+    entities = request['entities']
+    loc = first_entity_value(entities, 'template')
+    if loc:
+        # This is where we could use a weather service api to get the weather.
+        context['template'] = 'template'
+        if context.get('template1') is not None:
+            del context['template1]
+    else:
+        context['template1'] = True
+        if context.get('template') is not None:
+            del context['template']
+    return context
+    
 def getForecast(request):
     context = request['context']
     entities = request['entities']
