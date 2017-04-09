@@ -4,7 +4,7 @@ Created on Mon Apr  3 01:25:04 2017
 
 @author: alexr
 """
-import json
+import simplejson as json
 
 
 def first_entity_value(entities, entity):
