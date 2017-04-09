@@ -15,7 +15,7 @@ import sys
 from wit2 import Wit
 
 from general_interactions_1 import getGreeting, test2, getForecast, getTime, getDate
-
+from misc_fn import dump, load
 
 
 #print(sys.argv)
@@ -40,10 +40,11 @@ def wit_msg(sender_id,message_text):
     print('Message received = ' + message_text)
     
     print('appending to logs.txt')
-    file = open('logs.txt','a') 
-    log=(sender_id, message_text)
-    file.write(str(log))
-    file.close
+    logs=load('logs.txt')
+    if logs==None:
+        logs==[]
+    logs.append((sender_id,message_text))
+    dump(logs,'logs.txt')
     
     def log(message):  # simple wrapper for logging to stdout on heroku
         print(str(message))
