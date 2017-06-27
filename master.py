@@ -40,11 +40,11 @@ def wit_msg(sender_id,message_text):
     print('Message received = ' + message_text)
     
     print('appending to logs.txt')
-    try: logs=load('logs.txt')
+    try: logs = load('logs.txt')
     except ValueError:
-        logs=[]
+        logs = []
     if logs == None:
-        logs =[]
+        logs = []
     logs.append((sender_id,message_text))
     dump(logs,'logs.txt')
     
