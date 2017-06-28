@@ -1,0 +1,1 @@
+['hello', 'hello xera', 'hello siri', 'hello alexa', 'hello cortana', 'date?', 'time?', 'where do you live?', 'who are you?', 'how do you do?']
