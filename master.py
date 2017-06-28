@@ -15,7 +15,7 @@ import sys
 from wit2 import Wit
 
 from general_interactions_1 import test2, getGreeting, getForecast, getTime, getDate
-from general_commands_1 import getFullTest
+#from general_commands_1 import
 from misc_fn import dump, load
 
 
@@ -95,7 +95,15 @@ def wit_msg(sender_id,message_text):
             print(r.text)
         return None
         
-    
+    def getFullTest(request,sender_id):
+    context = request['context']
+    entities = request['entities']
+    fd = load('FullDiagnostic.txt')
+    for entry in fd:
+        entry=str(entry)
+        wit_msg(sender_id,entry)
+    context['results'] = 'pass'
+    return context
 
     # Setup Actions
     actions = {
