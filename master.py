@@ -63,7 +63,7 @@ def wit_msg(sender_id,message_text):
         for entry in fd:
             entry=str(entry)
             print(entry)
-            wit_msg(int1,entry)
+            #wit_msg(int1,entry)
         context['results'] = 'pass'
         return context     
         
