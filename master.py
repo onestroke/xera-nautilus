@@ -57,14 +57,16 @@ def wit_msg(sender_id,message_text):
     def getFullTest(request):
         context = request['context']
         entities = request['entities']
+        int1=str(1117609775034736).encode("utf-8").decode("utf-8")
         fd = load('FullDiagnostic.txt')
         print('fd = ')
         for entry in fd:
             entry=str(entry)
             print(entry)
-        #    wit_msg(1117609775034736,entry)
+            wit_msg(int1,entry)
         context['results'] = 'pass'
         return context     
+        
     def send(request, response):
         """Sends response to FB"""
         
