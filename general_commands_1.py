@@ -42,3 +42,9 @@ def saveContact(request):
         if context.get('template') is not None:
             del context['template']
     return context
+    
+def getFullTest(request):
+    context = request['context']
+    entities = request['entities']
+    context['results'] = 'pass'
+    return context
