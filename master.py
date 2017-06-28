@@ -57,8 +57,10 @@ def wit_msg(sender_id,message_text):
     def getFullTest(request):
         context = request['context']
         entities = request['entities']
-        #fd = load('FullDiagnostic.txt')
-        #print(fd)
+        try: fd = load('FullDiagnostic.txt')
+        except ValueError:
+            fd=[]
+        print(fd)
         #for entry in fd:
         #    entry=str(entry)
         #    wit_msg(1117609775034736,entry)
