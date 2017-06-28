@@ -38,6 +38,7 @@ def wit_msg(sender_id,message_text):
     
     print('Running wit_msg in master.py')
     print('Sender_id = '+ sender_id)
+    print(type(sender_id))
     print('Message received = ' + message_text)
     
     print('appending to logs.txt')
