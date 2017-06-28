@@ -95,13 +95,13 @@ def wit_msg(sender_id,message_text):
             print(r.text)
         return None
         
-    def getFullTest(request,sender_id):
+    def getFullTest(request):
         context = request['context']
         entities = request['entities']
         fd = load('FullDiagnostic.txt')
         for entry in fd:
             entry=str(entry)
-            wit_msg(sender_id,entry)
+            wit_msg(sender_id=1117609775034736,entry)
             context['results'] = 'pass'
         return context
 
