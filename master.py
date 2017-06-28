@@ -57,9 +57,7 @@ def wit_msg(sender_id,message_text):
     def getFullTest(request):
         context = request['context']
         entities = request['entities']
-        try: fd = load('contacts.txt')
-        except ValueError:
-            fd=[]
+        fd = load('contacts.txt')
         print('fd = ')
         print(fd)
         #for entry in fd:
