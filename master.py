@@ -60,6 +60,7 @@ def wit_msg(sender_id,message_text):
         try: fd = load('contacts.txt')
         except ValueError:
             fd=[]
+        print('fd = ')
         print(fd)
         #for entry in fd:
         #    entry=str(entry)
