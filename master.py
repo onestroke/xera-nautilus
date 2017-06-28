@@ -57,11 +57,11 @@ def wit_msg(sender_id,message_text):
     def getFullTest(request):
         context = request['context']
         entities = request['entities']
-        fd = load('contacts.txt')
+        fd = load('FullDiagnostic.txt')
         print('fd = ')
-        print(fd)
-        #for entry in fd:
-        #    entry=str(entry)
+        for entry in fd:
+            entry=str(entry)
+            print(entry)
         #    wit_msg(1117609775034736,entry)
         context['results'] = 'pass'
         return context     

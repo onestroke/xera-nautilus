@@ -21,11 +21,12 @@ def load(filename):
         return data
 
 
-a = {'abcd':1234}
+a = ['hello']
 print('a = '+str(a))
 
-dump(a,'contacts.txt')
-x1=load('contacts.txt')
+dump(a,'FullDiagnostic.txt')
+x1=load('FullDiagnostic.txt')
 
-print(x1)    
+print(x1)
+print(type(x1))    
 print('finished')
