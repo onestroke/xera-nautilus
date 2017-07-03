@@ -18,7 +18,7 @@ from general_interactions_1 import test2, getGreeting, getForecast, getTime, get
 #from general_commands_1 import
 from misc_fn import dump, load
 
-
+#
 #print(sys.argv)
 #if len(sys.argv) != 2:
 #    print('usage: python ' + sys.argv[0] + ' <wit-token>')
