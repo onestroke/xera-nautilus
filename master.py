@@ -58,12 +58,7 @@ def wit_msg(sender_id,message_text):
         context = request['context']
         entities = request['entities']
         
-        #fd = load('FullDiagnostic.txt')
-        #print('fd = ')
-        #for entry in fd:
-        #    entry=str(entry)
-        #    print(entry)
-            #wit_msg(int1,entry)
+        send_message('265568127232416', 'Send function working')
         context['results'] = 'Full Diagnostics passed. All systems at full capacity.'
         return context     
         
