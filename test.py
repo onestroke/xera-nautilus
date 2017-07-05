@@ -21,11 +21,15 @@ def load(filename):
         return data
 
 
-a = ['hello']
+a = {'1174561402652568' : 'phyllis poh',
+     '1410039532390737' : 'kai tan',
+     '1575402229166905' : 'hui shu',
+     '1117609775034736' : 'yuan han'
+    }
 print('a = '+str(a))
 
-dump(a,'FullDiagnostic.txt')
-x1=load('FullDiagnostic.txt')
+dump(a,'contacts.txt')
+x1=load('contacts.txt')
 
 print(x1)
 print(type(x1))    
