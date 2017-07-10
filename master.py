@@ -24,7 +24,7 @@ from misc_fn import dump, load
 #    print('usage: python ' + sys.argv[0] + ' <wit-token>')
 #    exit(1)
 
-access_token = 'GQNHRLJQB5OUUU4ZRZCWCP2MRHJGFTDG'
+access_token = 'LVA6ZG74YFPCZXNN4AYJEPUFTOPGTNBW'
 
 def test1():
     """Show that app.py can call master.py"""
