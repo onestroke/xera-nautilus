@@ -36,12 +36,10 @@ def wit_msg(sender_id,message_text):
     """Function called by app.py. From FB_ID of sender and message received, 
     sends responses to FB"""
     
-    print('Running wit_msg in master.py')
-    print('Sender_id = '+ sender_id)
-    print(type(sender_id))
-    print('Message received = ' + message_text)
-    
-    print('appending to logs.txt')
+    print('master/wit_msg: Running')
+    print('master/wit_msg: Message received = ' + message_text)
+    print('master/wit_msg: Sender_id = '+ sender_id)
+    print('master/wit_msg: Appending to logs.txt')
     try: logs = load('logs.txt')
     except ValueError:
         logs = []
@@ -67,23 +65,22 @@ def wit_msg(sender_id,message_text):
         """Sends response to FB"""
         
         # We use the fb_id as equal to session_id
-        print('Reponse to be sent= ')
+        
         
         fb_id = request['session_id']
         text = response['text']
-        print(text)
+        print('master/send: Response to be sent:' + text)
         
         # send message
-        print('Sending to send_message: '+text)
         send_message(fb_id,text)
         
     def send_message(recipient_id, message_text):
         """Sends response to FB"""
         
-        print('Sending to fb: '+ message_text)
-    
+        print('master/send_message: Sending to fb: '+ message_text)
+        print('master/send_message: start_log')
         log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
-    
+        print('master/send_message: end_log')
         params = {
             "access_token": os.environ["PAGE_ACCESS_TOKEN"]
         }
@@ -98,7 +95,7 @@ def wit_msg(sender_id,message_text):
                 "text": message_text
             }
         })
-        print('Posting to messenger now...')
+        print('master/send_message: Posting to messenger')
         r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
         if r.status_code != 200:
             print(r.status_code)
@@ -117,16 +114,16 @@ def wit_msg(sender_id,message_text):
         'getDate': getDate,
         'getFullTest': getFullTest,
     }
-    print('Complete set of actions = ')
-    print(actions)
+    print('master: Complete set of actions = '+ str(actions))
     #client = Wit(access_token=access_token, actions=actions)
     client=Wit(access_token=access_token)
     #client.access_token=access_token
     client.actions=actions
-    print('reading from logs.txt')
+    print('master: Reading from logs.txt')
     file = open('logs.txt','r') 
     print(file.read())
     file.close
+    print('master: message_text')
     print(message_text)
     resp1=client.message(message_text)
     print(resp1)
