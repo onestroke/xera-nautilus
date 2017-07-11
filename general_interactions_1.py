@@ -33,20 +33,20 @@ def test2(request):
     
     return context
     
-def template(request):
-    context = request['context']
-    entities = request['entities']
-    loc = first_entity_value(entities, 'template')
-    if loc:
-        # This is where we could use a weather service api to get the weather.
-        context['template'] = 'template'
-        if context.get('template1') is not None:
-            del context['template1']
-    else:
-        context['template1'] = True
-        if context.get('template') is not None:
-            del context['template']
-    return context
+#def template(request):
+#    context = request['context']
+#    entities = request['entities']
+#    loc = first_entity_value(entities, 'template')
+#    if loc:
+#        # This is where we could use a weather service api to get the weather.
+#        context['template'] = 'template'
+#        if context.get('template1') is not None:
+#            del context['template1']
+#    else:
+#        context['template1'] = True
+#        if context.get('template') is not None:
+#            del context['template']
+#    return context
     
 def getForecast(request):
     context = request['context']
@@ -65,12 +65,12 @@ def getForecast(request):
 
 def getGreeting(request):
 
-    print('Running getGreeting')
+    print('general_interactions_1/getGreeting: Running')
     context = request['context']
     entities = request['entities']
-    print('entities = ')
+    print('general_interactions_1/getGreeting: entities = ')
     print(entities)
-    print('context = ')
+    print('general_interactions_1/getGreeting: context = ')
     print(context)
     
     greet_list=['Hello...',
@@ -95,32 +95,32 @@ def getGreeting(request):
     loc = first_entity_value(entities, 'contact')
     
     if compare(loc,'xera')==True:
-        print('running WithName(XERA)')
+        print('general_interactions_1/getGreeting: running WithName(XERA)')
         context['WithName'] = greet_list1[0]
         if context.get('greeting') is not None:
             del context['greeting']
     elif compare(loc,'siri')==True:
-        print('running WithName(SIRI)')
+        print('general_interactions_1/getGreeting: running WithName(SIRI)')
         context['WithName'] = 'Do I look like dumb blonde living in an overpriced phone?'
         if context.get('greeting') is not None:
             del context['greeting']
     elif compare(loc,'alexa')==True:
-        print('running WithName(ALEXA)')
+        print('general_interactions_1/getGreeting: running WithName(ALEXA)')
         context['WithName'] = 'I am neither mythical, savage, nor missing my right boob.'
         if context.get('greeting') is not None:
             del context['greeting']
     elif compare(loc,'cortana')==True:
-        print('running WithName(CORTANA)')
+        print('general_interactions_1/getGreeting: running WithName(CORTANA)')
         context['WithName'] = 'You need treatment John. That PTSD cant go on forever.'
         if context.get('greeting') is not None:
             del context['greeting']
     elif loc!= None and entities['contact'][0]['confidence']>=0.8:
-        print('running WithName(Unrecognised Name)')
+        print('general_interactions_1/getGreeting: running WithName(Unrecognised Name)')
         context['WithName']='I am not '+ entities['contact'][0]['value'] +'. Hmmph!'
         if context.get('greeting') is not None:
             del context['greeting']
     else:
-        print('running greeting')
+        print('general_interactions_1/getGreeting: running GeneralGreeting')
         context['greeting'] = greet_list[0]
         if context.get('WithName') is not None:
             del context['WithName']
@@ -138,7 +138,7 @@ def getTime(request):
 def getDate(request):
     context = request['context']
     entities = request['entities']
-    context['date'] = str(datetime.now().strftime('%Y-%m-%d'))
+    context['date'] = str(datetime.now().strftime('%d-%m-%y'))
         
     return context
     
