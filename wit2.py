@@ -109,8 +109,8 @@ class Wit(object):
             params['reset'] = True
         resp = req(self.logger, self.access_token, 'POST', '/converse', params,
                    data=json.dumps(context))
-        print('wit2.resp=')
-        print(resp)
+        print('wit2: Response= '+ str(resp))
+        
         return resp
 
     def __run_actions(self, session_id, current_request, message, context, i,

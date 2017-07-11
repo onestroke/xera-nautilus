@@ -123,10 +123,10 @@ def wit_msg(sender_id,message_text):
     file = open('logs.txt','r') 
     print(file.read())
     file.close
-    print('master: message_text')
-    print(message_text)
+    print('master: message_text'+str(message_text))
+    
     resp1=client.message(message_text)
-    print(resp1)
+    print('master: Response= '+str(resp1))
     client.run_actions(session_id=sender_id, message=message_text)
     message_text=None
     
