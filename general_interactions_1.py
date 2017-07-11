@@ -129,6 +129,7 @@ def getGreeting(request):
     return context
     
 def getTime(request):
+    print('general_interactions_1/getTime: Running')
     context = request['context']
     entities = request['entities']
     context['time'] = 'LON/CAM time is now: '+ str(datetime.now(LON_tz).strftime('%H:%M')) + '.\n SIN time is now: ' + str(datetime.now(SIN_tz).strftime('%H:%M'))
@@ -136,6 +137,7 @@ def getTime(request):
     return context
     
 def getDate(request):
+    print('general_interactions_1/getDate: Running')
     context = request['context']
     entities = request['entities']
     context['date'] = str(datetime.now().strftime('%d-%m-%y'))
