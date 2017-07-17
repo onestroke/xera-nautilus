@@ -59,8 +59,24 @@ def wit_msg(sender_id,message_text):
         send_message('1117609775034736', 'Send function working')
         
         context['results'] = 'Full Diagnostics passed. All systems at full capacity.'
-        return context     
+        return context    
         
+    def sendMessage(request):
+        context = request['context']
+        entities = request['entities']
+        loc = first_entity_value(entities, 'contact')
+        contacts = load('contacts.txt')
+        for entry in contacts:
+            if loc = :
+                context['name'] = 'template'
+                if context.get('template1') is not None:
+                    del context['template1']
+            else:
+                context['template1'] = True
+                if context.get('template') is not None:
+                    del context['template']
+        return context
+    
     def send(request, response):
         """Sends response to FB"""
         
@@ -113,6 +129,7 @@ def wit_msg(sender_id,message_text):
         'getTime': getTime,
         'getDate': getDate,
         'getFullTest': getFullTest,
+        'sendMessage': sendMessage,
     }
     print('master: Complete set of actions = '+ str(actions))
     #client = Wit(access_token=access_token, actions=actions)

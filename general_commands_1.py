@@ -43,17 +43,5 @@ def saveContact(request):
             del context['template']
     return context
     
-def sendMessage(request):
-    context = request['context']
-    entities = request['entities']
-    loc = first_entity_value(entities, 'name')
-    if loc:
-        context['name'] = 'template'
-        if context.get('template1') is not None:
-            del context['template1']
-    else:
-        context['template1'] = True
-        if context.get('template') is not None:
-            del context['template']
-    return context
+
     

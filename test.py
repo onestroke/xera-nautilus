@@ -21,11 +21,14 @@ def load(filename):
         return data
 
 
-a = {'1174561402652568' : 'phyllis poh',
+a = [{'NAME':'PHYLLIS POH','fb_id':'1174561402652568'},
+     {''}]
+
+'1174561402652568' : 'phyllis poh',
      '1410039532390737' : 'kai tan',
      '1575402229166905' : 'hui shu',
      '1117609775034736' : 'yuan han'
-    }
+    
 print('a = '+str(a))
 
 dump(a,'contacts.txt')
