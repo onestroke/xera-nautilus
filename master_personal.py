@@ -7,9 +7,9 @@ Created on Mon Mar 20 09:50:19 2017
 
 import json
 from wit import Wit
-from misc_fn import dump, load
+from misc_fn import dump, load, find_entity
 from datetime import datetime
-from interactions_1 import greetings
+from interactions_1 import default_greeting
 
 
 """Main file for interacting with xera_v1.0"""
@@ -21,15 +21,23 @@ client = Wit(access_token=access_token)
 
 # dict of all actions
 actions = {
-	'greetings': greetings
+	'default_greeting': default_greeting
 }
 
 # main loop to keep xera running
+i = 0
 while True:
+	i += 1
 
 	# user text input
-	print('Your input = ')
-	input_text = input()
+	#print('Your input = ')
+	#input_text = input()
+	if i == 1:
+		input_text = 'hello'
+	elif i == 2:
+		input_text = 'hello xera'
+	else:
+		break
 	print('Input text = ' + str(input_text))
 
 	# user inputs 'end' to break loop
@@ -41,14 +49,13 @@ while True:
 	print(resp)
 
 	entities = resp['entities']
-	for entry in actions:
-		print('entry = ' + str(entry))
-		print(entities['greetings'][0]['value'])
-		try: 
-			val = entities['greetings'][0]['value']
-			print('val = ' + str(val))
-		except KeyError:
-			print('key not found')
+	intents = entities['intent']
+	for intent in intents:
+		intent_val = intent['value']
+		print(actions[intent_val](entities))
+
+
+		
 
 
 

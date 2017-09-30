@@ -23,8 +23,8 @@ from interactions_1 import greetings
 # access_token is taken from wit.ai
 access_token = 'UN7WMZXEXLEMUTXBG6IO64JWL6X6MUDC'
 
-client = Wit(access_token=access_token)
-
+#client = Wit(access_token=access_token)
+client = Wit()
 # text to be tested
 message_text = 'hello'
 
@@ -34,26 +34,17 @@ print('Response = ' + str(resp))
 print(type(resp))
 print(resp['entities'])
 entities = resp['entities']
+intents = entities['intent']
+print(intents)
 
-actions = {
-	'greetings': greetings
-}
+actions = {'default_greeting':greetings}
+entities = resp['entities']
+intents = entities['intent']
+for intent in intents:
+	intent_val = intent['value']
+	print(actions[intent_val](entities))
 
 
-
-print(entities['greetings'][0]['value'])
-
-for entry in actions:
-	print(entities[entry][0]['value'])
-
-print(actions['greetings'](val=True))
-
-list1 = [1, 2, 3, 4]
-print(type(list1))
-if type(list1) is list:
-	print(list1)
-
-print('testing repo')
 
 
 

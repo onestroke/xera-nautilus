@@ -8,20 +8,24 @@ import json
 from random import shuffle
 
 
-def first_entity_value(entities, entity):
+def find_entity(entities, entity):
     """
     Returns first entity value
     """
+    print('Running misc_fn.find_entity')
     if entity == None or entities == None:
         return None
     if entity not in entities:
         return None
     val = entities[entity][0]['value']
-    print('running first_entity_value')
-    print('val = ' + val)
-    if not val:
+
+    if val is None:
         return None
-    return val['value'] if isinstance(val, dict) else val
+
+    if isinstance(val, dict):
+        return val['value']
+    else:
+        return val
 
 def compare(str1, str2):
     """
@@ -56,9 +60,8 @@ def rand_choice(list1):
     """
     Chooses an item randomly from a list
     """
-    print(type(list1))
-    if type(list1) is list:
+    if isinstance(list1, list):
         shuffle(list1)
         return list1[0]
     else:
-        return 'Error, input needs to be a list'
+        return 'Error, input needs to be a list.'
