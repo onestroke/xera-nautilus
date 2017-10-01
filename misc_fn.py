@@ -13,10 +13,14 @@ def find_entity(entities, entity):
     Returns first entity value
     """
     print('Running misc_fn.find_entity')
+
+    # Return None is entity, entities are problematic
     if entity == None or entities == None:
         return None
     if entity not in entities:
         return None
+
+    # Find value of entity detected
     val = entities[entity][0]['value']
 
     if val is None:
@@ -27,10 +31,35 @@ def find_entity(entities, entity):
     else:
         return val
 
+def find_confidence(entities, entity, val):
+    """
+    Finds the confidence of a given entity value
+    """
+    print('Running misc_fn.find_confidence')
+
+    # Return None is entity, entities are problematic
+    if entity == None or entities == None:
+        return None
+    if entity not in entities:
+        return None
+
+    # Find confidence of given entity value
+    cfd = entities[entity][0]['confidence']
+
+    if cfd is None:
+        return None
+
+    if isinstance(cfd, dict):
+        return cfd['value']
+    else:
+        return cfd
+
 def compare(str1, str2):
     """
     Compare 2 strings and determine if they are the same
     """
+
+    # Ensures strings are lowercase
     str1 = str(str1)
     str2 = str(str2)
     str1 = str1.lower()
