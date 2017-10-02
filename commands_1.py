@@ -21,6 +21,8 @@ def weather_forecast(entities):
 	location_val = find_entity(entities, 'location')
 	location_cfd = find_confidence(entities, 'location', location_val)
 
+	# Get datetime and confidence from entities
+
 	# Default location set to Cambridge, will read from txt
 	if (location_val is None
 		or compare(location_val, 'Cambridge') == True
@@ -46,7 +48,7 @@ def weather_forecast(entities):
 	text_resp = ("Location in: "
 		+ location_val
 		+ ".\n"
-		+"Today's weather is: "
+		+"Weather right now is: "
 		+ status
 		+ ".\n"
 		+ "The temperature is: "
