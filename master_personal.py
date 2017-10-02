@@ -12,14 +12,17 @@ from datetime import datetime
 from interactions_1 import default_greeting
 from commands_1 import weather_forecast
 
+ 
+
 """Main file for interacting with xera_v1.0"""
 
-# access_token taken from wit.ai (server-side)
+# Access_token taken from wit.ai (server-side)
 access_token = 'UN7WMZXEXLEMUTXBG6IO64JWL6X6MUDC'
-
 client = Wit(access_token=access_token)
 
-# dict of all actions
+
+
+# Dict of all actions
 actions = {
 	'default_greeting': default_greeting,
 	'weather_forecast': weather_forecast,
@@ -64,7 +67,13 @@ while True:
 	# Running actions based on intents
 	for intent in intents:
 		intent_val = intent['value']
-		print(actions[intent_val](entities))
+
+		text_resp = actions[intent_val](entities)
+
+		# Printing response
+		print(text_resp)
+
+		
 
 
 		

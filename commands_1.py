@@ -1,6 +1,7 @@
 import json
 import pyowm
 from misc_fn import compare, rand_choice, find_entity, find_confidence
+from tts_watson.TtsWatson import TtsWatson
 
 def weather_forecast(entities):
 	"""
@@ -10,6 +11,11 @@ def weather_forecast(entities):
 
 	# Get data from OWM with API key
 	owm = pyowm.OWM('e324e0ba4da528c80606bdd257fd54d7')
+
+	# Access to Watson text-to-speech
+	ttsWatson = TtsWatson('c1073568-6269-4cad-8d61-fe6e9b83ac66',
+	'Qneu8xsmWWfF',
+	'en-US_AllisonVoice')
 
 	# Get location and confidence from entities
 	location_val = find_entity(entities, 'location')
@@ -37,7 +43,7 @@ def weather_forecast(entities):
 	humidity = w.get_humidity()
 
 	# Output in response format
-	weather = ("Location in: "
+	text_resp = ("Location in: "
 		+ location_val
 		+ ".\n"
 		+"Today's weather is: "
@@ -45,13 +51,23 @@ def weather_forecast(entities):
 		+ ".\n"
 		+ "The temperature is: "
 		+ str(avg_temp)
-		+ " (from "
+		+ " degrees celsius (from "
 		+ str(min_temp)
-		+ " to "
+		+ " degrees celsius to "
 		+ str(max_temp)
-		+ ").\n"
+		+ " degrees celsius).\n"
 		+ "Humidity is: "
 		+ str(humidity)
-		+ ".")
+		+ "%.")
 
-	return weather
+	# Playing response from Watson tts
+	ttsWatson.play('<voice-transformation type="Young"'
+		+ ' strength="80%">'
+		+ '<speak>'
+		+ '<express-as type="GoodNews">'
+		+ text_resp
+		+ '</express-as>'
+		+ '</speak>'
+		+ "</voice-transformation>")
+	
+	return text_resp

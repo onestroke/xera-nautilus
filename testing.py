@@ -26,27 +26,6 @@ access_token = 'UN7WMZXEXLEMUTXBG6IO64JWL6X6MUDC'
 
 client = Wit(access_token=access_token)
 
-# text to be tested
-message_text = 'hello'
-
-# response from wit.ai
-resp = client.message(message_text)
-print('Response = ' + str(resp))
-print(type(resp))
-print(resp['entities'])
-entities = resp['entities']
-intents = entities['intent']
-print(intents)
-
-actions = {'default_greeting': default_greeting}
-entities = resp['entities']
-intents = entities['intent']
-for intent in intents:
-	intent_val = intent['value']
-	print(actions[intent_val](entities))
-
-
-print('\n')
 
 owm = pyowm.OWM('e324e0ba4da528c80606bdd257fd54d7')  # You MUST provide a valid API key
 
@@ -76,23 +55,13 @@ weather = ("Today's weather is: "
 print(weather)
 print('\n')
 
-fc = owm.three_hours_forecast('London,uk')
-print(fc.get_forecast)
+fc = owm.three_hours_forecast('London,GB')
+print(fc)
+for weather in fc.get_forecast():
+	print (weather.get_reference_time(timeformat='date'), weather.get_status(), weather.get_detailed_status())
+
 
 print('\n')
-
-from tts_watson.TtsWatson import TtsWatson
- 
-ttsWatson = TtsWatson('c1073568-6269-4cad-8d61-fe6e9b83ac66',
-	'Qneu8xsmWWfF',
-	'en-US_AllisonVoice') 
-ttsWatson.play('<voice-transformation type="Custom" glottal_tension="-80%">'
-	+ "Hello World"
-	+ "</voice-transformation>")
-
-ttsWatson.play("Hello World")
-
-
 
 
     
