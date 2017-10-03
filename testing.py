@@ -13,7 +13,7 @@ import pyowm
 from wit import Wit
 from flask import Flask, request
 from misc_fn import dump, load, find_entity, find_confidence
-from datetime import datetime
+from datetime import datetime, timedelta
 from pytz import timezone
 import pytz as pytz
 from interactions_1 import default_greeting
@@ -83,6 +83,28 @@ print(fc)
 for weather in fc.get_forecast():
 	print (weather.get_reference_time(timeformat='date'), weather.get_status(), weather.get_detailed_status())
 	print(date_val1-weather.get_reference_time(timeformat='date'))
+
+print('\n')
+clear = 0
+clouds = 0
+rain = 0
+for weather in fc.get_forecast():
+	if (timedelta(days=0) < weather.get_reference_time(timeformat='date') - date_val1 <= timedelta(days=1)):
+		print(weather.get_reference_time(timeformat='date') - date_val1)
+		if weather.get_status() == 'Clear':
+			clear += 1
+		elif weather.get_status() == 'Clouds':
+			clouds += 1
+		elif weather.get_status() == 'Rain':
+			rain += 1
+
+print(clear)
+print(clouds)
+print(rain)
+
+if clear >= clouds and clear >= rain:
+elif clouds >= clear and clouds >= rain:
+elif rain >= clouds and rain >= clear:
 
 print('\n')
 

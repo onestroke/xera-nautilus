@@ -2,6 +2,7 @@ import json
 import pyowm
 from misc_fn import compare, rand_choice, find_entity, find_confidence
 from tts_watson.TtsWatson import TtsWatson
+from pytz import timezone
 
 def weather_forecast(entities):
 	"""
@@ -22,6 +23,14 @@ def weather_forecast(entities):
 	location_cfd = find_confidence(entities, 'location', location_val)
 
 	# Get datetime and confidence from entities
+	datetime_val = find_entity(entities,'datetime')
+	date_val = datetime_val[:10]
+	date_val = date_val.replace('-','')
+	year = date_val[:4]
+	day = date_val[6:]
+	month = date_val[4:6]
+	london = timezone('Europe/London')
+	date_val1 = datetime(int(year), int(month), int(day), tzinfo=london)
 
 	# Default location set to Cambridge, will read from txt
 	if (location_val is None
