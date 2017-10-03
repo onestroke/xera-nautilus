@@ -47,7 +47,9 @@ while True:
 	elif i == 3:
 		input_text = 'hello siri'
 	elif i == 4:
-		input_text = 'what is the weather in london?'
+		input_text = 'what is the weather in london right now?'
+	elif i == 5:
+		input_text = 'what is the weather in singapore tomorrow?'
 	else:
 		break
 	print('Input text = ' + str(input_text))

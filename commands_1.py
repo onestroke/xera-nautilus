@@ -25,22 +25,23 @@ def weather_forecast(entities):
 
 	# Get datetime and confidence from entities
 	datetime_val = find_entity(entities,'datetime')
-	date_val = datetime_val[:10]
-	date_val = date_val.replace('-','')
-	year = date_val[:4]
-	year = int(year)
-	day = date_val[6:]
-	day = int(day)
-	month = date_val[4:6]
-	month = int(month)
-	time_val = datetime_val[11:16]
-	time_val = time_val.replace(':','')
-	hour = time_val[:2]
-	minute = time_val[3:5]
-	hour = int(hour)
-	minute = int(minute)
-	london = timezone('Europe/London')
-	singapore = timezone('Asia/Singapore')
+	if datetime_val is not None:
+		date_val = datetime_val[:10]
+		date_val = date_val.replace('-','')
+		year = date_val[:4]
+		year = int(year)
+		day = date_val[6:]
+		day = int(day)
+		month = date_val[4:6]
+		month = int(month)
+		time_val = datetime_val[11:16]
+		time_val = time_val.replace(':','')
+		hour = time_val[:2]
+		minute = time_val[3:5]
+		hour = int(hour)
+		minute = int(minute)
+		london = timezone('Europe/London')
+		singapore = timezone('Asia/Singapore')
 	
 
 	# Default location set to Cambridge, will read from txt
@@ -50,20 +51,25 @@ def weather_forecast(entities):
 		or location_val == 'weather?'):
 		observation = owm.weather_at_place('Cambridge, GB')
 		fc = owm.three_hours_forecast('Cambridge, GB')
-		date_val1 = datetime(year, month, day, hour, minute, tzinfo=london)
+		if datetime_val is not None:
+			date_val1 = datetime(year, month, day, hour, minute, tzinfo=london)
 
 	# Other locations
 	elif compare(location_val, 'Singapore') == True:
 		observation = owm.weather_at_place('Singapore')
 		fc = owm.three_hours_forecast('Singapore')
-		date_val1 = datetime(year, month, day, hour, minute, tzinfo=singapore)
+		if datetime_val is not None:
+			date_val1 = datetime(year, month, day, hour, minute, tzinfo=singapore)
 	else:
 		observation = owm.weather_at_place(location_val)
 		fc = owm.three_hours_forecast(location_val)
-		date_val1 = datetime(year, month, day, hour, minute, tzinfo=london)
+		if datetime_val is not None:
+			date_val1 = datetime(year, month, day, hour, minute, tzinfo=london)
 
-	if ( datetime.now(london) - date_val1 < timedelta(minutes=1)
-		and date_val1.time() != time(00,00)):
+	if ((datetime_val is not None
+		and datetime.now(london) - date_val1 < timedelta(minutes=1)
+		and date_val1.time() != time(00,00))
+		or datetime_val is None):
 
 		# Get weather
 		w = observation.get_weather()
