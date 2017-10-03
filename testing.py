@@ -13,10 +13,11 @@ import pyowm
 from wit import Wit
 from flask import Flask, request
 from misc_fn import dump, load, find_entity, find_confidence
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 from pytz import timezone
 import pytz as pytz
 from interactions_1 import default_greeting
+from commands_1 import weather_forecast
 
 
 
@@ -27,30 +28,9 @@ access_token = 'UN7WMZXEXLEMUTXBG6IO64JWL6X6MUDC'
 
 client = Wit(access_token=access_token)
 
-message = 'what is the weather in london tomorrow?'
-resp = client.message(message)
-entities = resp['entities']
-print(entities)
-datetime_val = find_entity(entities,'datetime')
-print(datetime_val)
-print(type(datetime_val))
-date_val = datetime_val[:10]
-print(date_val)
-date_val = date_val.replace('-','')
-print(date_val)
-year = date_val[:4]
-day = date_val[6:]
-month = date_val[4:6]
-print(year, month, day)
-london = timezone('Europe/London')
-singapore = timezone('Asia/Singapore')
-date_val1 = datetime(int(year), int(month), int(day), tzinfo=london)
-print(date_val1)
 
-
-
-print('\n')
-owm = pyowm.OWM('e324e0ba4da528c80606bdd257fd54d7')  # You MUST provide a valid API key
+owm = pyowm.OWM('e324e0ba4da528c80606bdd257fd54d7')  
+# You MUST provide a valid API key
 
 # Search for current weather in London (UK)
 observation = owm.weather_at_place('Cambridge, UK')
@@ -78,18 +58,66 @@ weather = ("Today's weather is: "
 print(weather)
 print('\n')
 
+message = 'what is the weather in Cambridge today?'
+resp = client.message(message)
+entities = resp['entities']
+print(entities)
+datetime_val = find_entity(entities,'datetime')
+print(datetime_val)
+print(type(datetime_val))
+date_val = datetime_val[:10]
+print(date_val)
+date_val = date_val.replace('-','')
+print(date_val)
+year = date_val[:4]
+day = date_val[6:]
+month = date_val[4:6]
+print(year, month, day)
+london = timezone('Europe/London')
+singapore = timezone('Asia/Singapore')
+time_val = datetime_val[11:16]
+time_val = time_val.replace(':','')
+hour = time_val[:2]
+minute = time_val[3:5]
+year = int(year)
+month = int(month)
+day = int(day)
+hour = int(hour)
+minute = int(minute)
+date_val1 = datetime(year, month, day, hour, minute, tzinfo=london)
+print(datetime.now(london))
+print(date_val1)
+print(date_val1 - datetime.now(london))
+
+if ( datetime.now(london) - date_val1 < timedelta(minutes=1)
+	and date_val1.time() != time(00,00)):
+	print('weather right now')
+else:
+	print('today or tmr')
+
+
+print('\n')
+
 fc = owm.three_hours_forecast('London,GB')
 print(fc)
 for weather in fc.get_forecast():
-	print (weather.get_reference_time(timeformat='date'), weather.get_status(), weather.get_detailed_status())
-	print(date_val1-weather.get_reference_time(timeformat='date'))
+	#print (weather.get_reference_time(timeformat='date'), weather.get_status(), weather.get_detailed_status())
+	time1 = (weather.get_reference_time(timeformat='date').time())
+	if time(9,00) <= time1 <= time(18,00):
+		print(time1)
+
+
 
 print('\n')
 clear = 0
 clouds = 0
 rain = 0
 for weather in fc.get_forecast():
-	if (timedelta(days=0) < weather.get_reference_time(timeformat='date') - date_val1 <= timedelta(days=1)):
+	if (timedelta(days=0) <= weather.get_reference_time(timeformat='date')
+		- date_val1 <= timedelta(days=1)
+		and time(9,00) <= weather.get_reference_time(timeformat='date').time()
+		<= time(18,00)):
+		print(weather.get_reference_time(timeformat='date'))
 		print(weather.get_reference_time(timeformat='date') - date_val1)
 		if weather.get_status() == 'Clear':
 			clear += 1
@@ -103,11 +131,16 @@ print(clouds)
 print(rain)
 
 if clear >= clouds and clear >= rain:
+	print('weather is mainly clear.')
 elif clouds >= clear and clouds >= rain:
+	print('weather is mainly cloudy.')
 elif rain >= clouds and rain >= clear:
+	print('weather is mainly rainy.')
 
 print('\n')
+print('\n')
 
+print(weather_forecast(entities))
 
     
 
