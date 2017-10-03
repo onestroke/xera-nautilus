@@ -52,7 +52,7 @@ while True:
 		input_text = 'what is the weather in singapore tomorrow?'
 	else:
 		break
-	print('Input text = ' + str(input_text))
+	print('Input text = ' + str(input_text) + '\n')
 
 	# User inputs 'end' to break loop
 	if input_text == 'end':
@@ -61,6 +61,7 @@ while True:
 	# Response by wit.ai
 	resp = client.message(input_text)
 	print(resp)
+	print('\n')
 
 	# Filtering out intents and entities from response
 	entities = resp['entities']
@@ -73,7 +74,8 @@ while True:
 		text_resp = actions[intent_val](entities)
 
 		# Printing response
-		print(text_resp)
+		print('\n')
+		print('text_response = ' + text_resp + '\n')
 
 		
 

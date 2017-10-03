@@ -25,6 +25,9 @@ def weather_forecast(entities):
 
 	# Get datetime and confidence from entities
 	datetime_val = find_entity(entities,'datetime')
+
+	# Creating datetime object from the datetime string 
+	# returned from wit.ai
 	if datetime_val is not None:
 		date_val = datetime_val[:10]
 		date_val = date_val.replace('-','')
@@ -40,6 +43,8 @@ def weather_forecast(entities):
 		minute = time_val[3:5]
 		hour = int(hour)
 		minute = int(minute)
+
+		# Setting timezones
 		london = timezone('Europe/London')
 		singapore = timezone('Asia/Singapore')
 	
@@ -54,7 +59,7 @@ def weather_forecast(entities):
 		if datetime_val is not None:
 			date_val1 = datetime(year, month, day, hour, minute, tzinfo=london)
 
-	# Other locations
+	# Other locations: Currently only supports Singapore
 	elif compare(location_val, 'Singapore') == True:
 		observation = owm.weather_at_place('Singapore')
 		fc = owm.three_hours_forecast('Singapore')
@@ -66,6 +71,7 @@ def weather_forecast(entities):
 		if datetime_val is not None:
 			date_val1 = datetime(year, month, day, hour, minute, tzinfo=london)
 
+	# Weather observation at current time.
 	if ((datetime_val is not None
 		and datetime.now(london) - date_val1 < timedelta(minutes=1)
 		and date_val1.time() != time(00,00))
@@ -97,6 +103,8 @@ def weather_forecast(entities):
 		clear = 0
 		clouds = 0
 		rain = 0
+
+		# Weather forecast in 3 hour intervals during working hours.
 		for weather in fc.get_forecast():
 			if (timedelta(days=0) 
 				<= weather.get_reference_time(timeformat='date') - date_val1 
@@ -104,8 +112,8 @@ def weather_forecast(entities):
 				and time(9,00) 
 				<= weather.get_reference_time(timeformat='date').time()
 				<= time(18,00)):
-				print(weather.get_reference_time(timeformat='date'))
-				print(weather.get_reference_time(timeformat='date') - date_val1)
+				#print(weather.get_reference_time(timeformat='date'))
+				#print(weather.get_reference_time(timeformat='date') - date_val1)
 				if weather.get_status() == 'Clear':
 					clear += 1
 				elif weather.get_status() == 'Clouds':
@@ -113,20 +121,19 @@ def weather_forecast(entities):
 				elif weather.get_status() == 'Rain':
 					rain += 1
 
-		print(clear)
-		print(clouds)
-		print(rain)
-
+		# Changing text_resp according to detected weather.
 		if clear >= clouds and clear >= rain:
-			text_resp = 'Weather is mainly clear.'
+			text_resp = 'Weather is mainly clear during working hours.'
 		elif clouds >= clear and clouds >= rain:
-			text_resp = 'Weather is mainly cloudy.'
+			text_resp = 'Weather is mainly cloudy during working hours.'
 		elif rain >= clouds and rain >= clear:
-			text_resp = 'Weather is mainly rainy.'
+			text_resp = 'Weather is mainly rainy during working hours. '
+		if rain > 0:
+			text_resp += 'Rain is expected. Please prepare for wet weather. '
+		else:
+			text_resp += 'Rain is not expected. I hope it stays that way.'
 
-	print('\n')
-
-	# Playing response from Watson tts
+	# Playing text_response with Watson tts
 	ttsWatson.play('<voice-transformation type="Young"'
 		+ ' strength="80%">'
 		+ '<speak>'
