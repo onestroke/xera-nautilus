@@ -36,6 +36,8 @@ def default_greeting(entities):
 			text_resp = 'I am neither mythical, nor savage, nor missing my right boob.'
 		elif compare(contact_val, 'cortana') == True:
 			text_resp = 'You need treatment John, that PTSD cannot go on forever.'
+		else:
+			text_resp = 'I am not ' + contact_val + '!'
 	else:
 		return None
 
