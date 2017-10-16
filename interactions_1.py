@@ -28,7 +28,7 @@ def default_greeting(entities):
 	if greetings_val == 'true':
 		if contact_val is None:
 			text_resp = rand_choice(greetings_list)
-		elif compare(contact_val, 'xera') == True:
+		elif compare(contact_val, 'emily') == True:
 			text_resp = 'Hello master'
 		elif compare(contact_val, 'siri') == True:
 			text_resp = 'Do I look like a dumb blonde living in an overpriced phone?'

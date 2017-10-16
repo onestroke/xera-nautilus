@@ -43,6 +43,9 @@ while True:
 	with sr.Microphone() as source:
 	    print("Say something!")
 	    audio = r.listen(source)
+	    print('Message recorded.')
+	    
+    	
  
 # Speech recognition using Google Speech Recognition
 	try:
